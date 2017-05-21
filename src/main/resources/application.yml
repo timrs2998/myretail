@@ -1,0 +1,7 @@
+cassandra:
+  contactPoints: localhost
+  keyspaceName: myretail
+  port: 9142
+embeddedCassandra.enabled: true
+endpoints.hypermedia.enabled: true
+management.security.enabled: false
