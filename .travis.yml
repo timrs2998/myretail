@@ -1,3 +1,25 @@
+sudo: required
 language: java
 jdk:
- - oraclejdk8
+- openjdk8
+services:
+- docker
+script: "./gradlew build"
+after_success:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=timrs2998/myretail
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
+env:
+  global:
+  # DOCKER_EMAIL, DOCKER_USER, and DOCKER_PASS
+  - secure: pNNkabDaa5DM8eDRFbD08gD/XfZg8kNBb4mb8s/K9Pp0/WHbrNmvkAFwxk6pkLg+I2+kiqVIZMdWtCa85ruFr3R2kl2cs9czKsWpUVupPxjWwVtDuMft89KkXAlX/AZdFSYFDhXPSLPtzAKgUQ3zz2NGy6FGLzwVcXtnh2wUf8TPTYJ9fkPMdcv7lHl/e85J7T7b5Kfwz/w3Ypv8SinJxQ3ou+O3JeXm9B2ftdAW04PzvMJ6un+xxO+7OrnqoVuhfDz2M6OleIy+/gSq+VEtp9Fuq5fj/AWs5n6N4Wh2UxRm3nIC4zW5r1jJhMOYPc3E0LUWbqfY7xNEJ/E0qDNQ+5UaljOuPYZdEYOLj7Z9ho0qE/nWmhYw69CZV+bHJ+fS0DKbTwKhpMrYWKIB9xgUzoZOozN1uBLEGdHdvc0fiyVf9wNCP2M8Cjb3pg8+c9gQLwAuWSwzBKvYMrK4EEp6P948tTCHgo6fTQLTr2TKIfbmkyXIajnDQ8bKK2FmoYAQ05rk+UnOyySymWNzlCDFn6k4UJXFcoSyIH/hIL0jAVl+1Koyl6nhdq8auQCK8L+8x6qet0CyAw0htM6dI4qecfeHi/mn0DXz7UBREzAuQ1f/gkQJfnRlCeaxSHlWgasT8mK66yi7z0BEqzh9dCfloYVDQLa6LbyTU/n/bsDYejw=
+  - secure: MJOsGMcBUMuHFnggwE/356ga/cOSRe6FD1gkgZ5ckxlmXU6SjHTS9jClXk4zdqtwUWwyTpPa1CG+17pqwbe0r+EQEVsQU2x/PdANUUUZVu4cn08nc37HywmrGgTiV7jle05qhjcq/bhrtC5wuRSp2+nyS5vamOREJyIdIZqvhiLwW6xgpo3nvEjBO1CJmQFuhh4jbZr3OEvFp3NBZmObcT0+VSuvnF1Nyy+JaCbCZOB5ySocMBoFtMkB/QneIQmFTxtYOI2EQGjtV3b/tEiM1h+VPMTron3BNYljVzfQ6wDZtqX6CB5BvNmPLtLKeI9hmLCO1OkYoaKkX/fyjdKX9GbLlfKnGoCYjYBAubLvyuHZ1srvli7hIKD9jLyJ9vUV5Gb+YlsuEKgqLYjKRAbH1cC+A86KXPHZMf+xmvxLOjhxskf3xPRJo3hePQEhT1hs8WjDTtyq32QRoZh3Oo+jxG8rCWx9r68R0UWTHbaeyPAYuBkaCBAGuG73ne5PuTheMqphrK9osm5S8ZOqSl57usvZVUyYX+3YSS3gKUxSj+jP8X/biz2JjqQfFzToB8b1C7xsdjMOS/npsY4bArtJ0GAe6UFRywslte3ASMUKkl/m0qbmBUmhKKCN+sSbGrkbo/9p+TnJK/sMz5f/Jz3iCbTcyMZdAfd23qzi8cu6Dao=
+  - secure: CPw3li5aNiGQADYPhJtljWDE/CAMiIewCj9kLggrRNkIhNOP/SevQWe+qRxsqipPe35cgwUKd77YAoHe7ek+e6jwoPk0AVBqjPaBUJD+3+gXxWJ6YLDle6y5fNSZt7GUlmvbAd1uGKhPUDiGhik6ZdOtEoRx5m19zXdNtC3qH0sk5r7COjR1baPT8m8vsN9FPgSxLiYwpofw8GY/0kuuyaENjESpqJN6NOPalH+NGEmEy0WoTk2YpsR8Vu2076lu35JiBZKW1yzUWmoORtjolOV7k4KsnZpim24xMOGI3UHALxXsp/pkYr0PglmjUeifYJmxnexb+Y9C5l8LxKdi6v8yHrwIjVvNRFObJmsaBMpo81CTOPdxcEUDTV6DhG+MiTcgpze64VdrYKIl+ljAbXH5io4T0npanXDfH9BA3brFGd/PFoDjD9GfCgU7IYwVSwb291aln/b/aAO8M+9iWF8Uy9dSDycYTqH95Z4kIyNJq1Lko8/vENcKL/nNnzLyUkDOIuQKEDCXkD9KewXISxr61JhblSv2mXQSFWglp0JaoB61wfplsmKFTK2DV6qPCOHxBd7TplYaqKGgAvrPyy3CC2vj2ed5JMQdMm+ooZ05HPNouUwVy1Q4P0MgEhqOCnN+HPhm2frkJv5Q75vKcQj6OlKXcUecwDDS6JTXs3Y=
+  - COMMIT=${TRAVIS_COMMIT::8}
+
+# Sources:
+# * https://sebest.github.io/post/using-travis-ci-to-build-docker-images/
