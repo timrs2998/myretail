@@ -39,11 +39,11 @@ subprojects {
         // Kotlin
         compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
         compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+        compile("com.fasterxml.jackson.core:jackson-databind:$jacksonModuleKotlinVersion")
         compile("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
 
         // Spock
         compile("org.codehaus.groovy:groovy-all:$groovyVersion")
         testCompile("org.spockframework:spock-core:$spockVersion")
-        testCompile("org.spockframework:spock-spring:$spockVersion")
     }
 }
