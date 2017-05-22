@@ -41,6 +41,7 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     compile('org.codehaus.groovy:groovy-all:2.4.10')
     compile('org.springframework.data:spring-data-rest-hal-browser')
+    compile('com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7')
 
     runtime('org.springframework.boot:spring-boot-devtools')
 
