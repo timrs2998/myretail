@@ -1,6 +1,7 @@
-package com.myretail.demo.product
+package com.myretail.service.product
 
-import com.myretail.demo.DemoApplicationIntSpec
+import com.myretail.api.CurrencyCode
+import com.myretail.service.DemoApplicationIntSpec
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
@@ -10,7 +11,7 @@ import org.springframework.http.ResponseEntity
 class ProductIntSpec extends DemoApplicationIntSpec {
 
     @Autowired
-    ProductRepository repository
+    ProductPORepository repository
 
     void 'should get product by id'() {
         given: 'an existing product in the database'

@@ -1,4 +1,4 @@
-package com.myretail.demo.config
+package com.myretail.service.config
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.cassandra.core.keyspace.CreateKeyspaceSpecification
@@ -10,7 +10,7 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 
 @Configuration
 @DependsOn("embeddedCassandra")
-@EnableCassandraRepositories(basePackages = arrayOf("com.myretail.demo.product"))
+@EnableCassandraRepositories(basePackages = arrayOf("com.myretail.service.product"))
 class CassandraConfig : AbstractCassandraConfiguration() {
 
     @Value("\${cassandra.contactPoints}")
@@ -24,7 +24,7 @@ class CassandraConfig : AbstractCassandraConfiguration() {
 
     override fun getContactPoints() = _contactPoints
 
-    override fun getEntityBasePackages() = arrayOf("com.myretail.demo.product")
+    override fun getEntityBasePackages() = arrayOf("com.myretail.service.product")
 
     override fun getKeyspaceCreations() = listOf(
             CreateKeyspaceSpecification.createKeyspace(keyspaceName)

@@ -1,8 +1,8 @@
-package com.myretail.demo.config
+package com.myretail.service.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
-import com.myretail.demo.product.ProductPO
+import com.myretail.service.product.ProductPO
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter

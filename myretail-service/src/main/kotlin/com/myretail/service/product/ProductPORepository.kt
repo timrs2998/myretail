@@ -1,4 +1,4 @@
-package com.myretail.demo.product
+package com.myretail.service.product
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
@@ -9,4 +9,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource
         collectionResourceRel = "products",
         itemResourceRel = "product"
 )
-interface ProductRepository : CrudRepository<ProductPO, Long>
+interface ProductPORepository : CrudRepository<ProductPO, Long>

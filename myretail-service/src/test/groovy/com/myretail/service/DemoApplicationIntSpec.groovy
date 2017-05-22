@@ -1,4 +1,4 @@
-package com.myretail.demo
+package com.myretail.service
 
 import groovy.transform.CompileStatic
 import org.cassandraunit.spring.CassandraUnitDependencyInjectionTestExecutionListener

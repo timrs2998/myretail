@@ -1,4 +1,4 @@
-package com.myretail.demo.product
+package com.myretail.api
 
 enum class CurrencyCode {
     USD

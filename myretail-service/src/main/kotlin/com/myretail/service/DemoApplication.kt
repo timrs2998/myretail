@@ -1,4 +1,4 @@
-package com.myretail.demo
+package com.myretail.service
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication

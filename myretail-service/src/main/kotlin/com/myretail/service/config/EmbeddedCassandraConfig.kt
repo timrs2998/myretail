@@ -1,4 +1,4 @@
-package com.myretail.demo.config
+package com.myretail.service.config
 
 import org.cassandraunit.utils.EmbeddedCassandraServerHelper
 import org.springframework.beans.factory.annotation.Value
