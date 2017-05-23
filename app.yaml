@@ -1,3 +1,12 @@
+service: myretail-service
 runtime: custom
 env: flex
-enable_health_check: False
+
+manual_scaling:
+  instances: 1
+
+env_variables:
+  JAVA_OPTS: '-DembeddedCassandra.enabled=true'
+
+health_check:
+  enable_health_check: True
