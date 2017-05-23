@@ -34,6 +34,6 @@ class CassandraConfig : AbstractCassandraConfiguration() {
 
     override fun getPort() = _port!!
 
-    override fun getSchemaAction() =SchemaAction.CREATE_IF_NOT_EXISTS
+    override fun getSchemaAction() = SchemaAction.CREATE_IF_NOT_EXISTS
 
 }

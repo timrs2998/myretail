@@ -4,28 +4,34 @@ import com.myretail.api.Price
 import com.myretail.api.Product
 import com.myretail.service.api.RedskyApi
 import com.myretail.service.api.RedskyProduct
+import com.myretail.service.api.RedskyResponse
 import org.springframework.data.rest.webmvc.ResourceNotFoundException
 import org.springframework.stereotype.Component
+import retrofit2.HttpException
+import java.util.concurrent.Future
 import javax.inject.Inject
 
 @Component
 class ProductService @Inject constructor(val repository: ProductPORepository,
                                          val api: RedskyApi) {
 
+    val excludes = listOf("taxonomy", "price", "promotion", "bulk_ship",
+            "rating_and_review_reviews", "rating_and_review_statistics",
+            "question_answer_statistics")
+
     fun get(id: Long): Product {
+        val future: Future<RedskyResponse> = api.get(id, excludes)
         val productPO: ProductPO? = repository.findOne(id)
-        val redskyProduct: RedskyProduct? = api.get(id, listOf()).execute().body()?.product
-        validateRedskyProductExists(redskyProduct)
+        val redskyProduct: RedskyProduct = getProduct(future)
         return if (productPO == null) {
-            buildProduct(redskyProduct!!)
+            buildProduct(redskyProduct)
         } else {
-            buildProduct(productPO, redskyProduct!!)
+            buildProduct(productPO, redskyProduct)
         }
     }
 
     fun update(updated: Product): Product {
-        val redskyProduct: RedskyProduct? = api.get(updated.id, listOf()).execute().body()?.product
-        validateRedskyProductExists(redskyProduct)
+        val redskyProduct: RedskyProduct? = getProduct(api.get(updated.id, excludes))
         if (updated.currentPrice == null) {
             repository.delete(updated.id)
             return buildProduct(redskyProduct!!)
@@ -34,9 +40,15 @@ class ProductService @Inject constructor(val repository: ProductPORepository,
         return buildProduct(productPO, redskyProduct!!)
     }
 
-    private fun validateRedskyProductExists(redskyProduct: RedskyProduct?) {
-        if (redskyProduct?.availableToPromiseNetwork == null) {
-            throw ResourceNotFoundException("Product does not exist in Redsky.")
+    private fun getProduct(future: Future<RedskyResponse>): RedskyProduct {
+        try {
+            return future.get().product
+        } catch (ex: java.util.concurrent.ExecutionException) {
+            val cause = ex.cause
+            if (cause is HttpException && cause.code() == 404) {
+                throw ResourceNotFoundException("Product does not exist in Redsky.")
+            }
+            throw ex
         }
     }
 
@@ -66,4 +78,5 @@ class ProductService @Inject constructor(val repository: ProductPORepository,
                 )
         )
     }
+
 }

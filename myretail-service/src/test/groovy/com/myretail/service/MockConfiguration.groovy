@@ -1,5 +1,6 @@
 package com.myretail.service
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.myretail.service.api.RedskyApi
 import com.myretail.service.api.RedskyAvailableToPromiseNetwork
 import com.myretail.service.api.RedskyDeepRedLabels
@@ -11,12 +12,13 @@ import com.myretail.service.config.RedskyConfig
 import groovy.transform.CompileStatic
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.mock.BehaviorDelegate
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
 
+import javax.inject.Inject
+import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
 @CompileStatic
@@ -35,20 +37,15 @@ class MockConfiguration extends RedskyConfig {
     )
 
     @Bean
+    @Inject
     @Override
-    RedskyApi redskyApi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(redskyUri)
-                .build()
+    RedskyApi redskyApi(ObjectMapper objectMapper) {
+        Retrofit retrofit = redskyRetrofit(objectMapper)
         BehaviorDelegate<RedskyApi> delegate = new MockRetrofit.Builder(retrofit)
                 .networkBehavior(perfectNetwork())
                 .build()
                 .create(RedskyApi)
-        MockRedskyApi redskyApi = new MockRedskyApi(delegate)
-
-        redskyApi.products[existing.availableToPromiseNetwork.product_id] = existing
-
-        return redskyApi
+        return new MockRedskyApi(delegate)
     }
 
     private NetworkBehavior perfectNetwork() {
@@ -62,14 +59,16 @@ class MockConfiguration extends RedskyConfig {
 
     private static class MockRedskyApi implements RedskyApi {
         final BehaviorDelegate<RedskyApi> delegate
-        final Map<Long, RedskyProduct> products = [:]
+        final Map<Long, RedskyProduct> products = [
+                (existing.availableToPromiseNetwork.product_id): existing
+        ]
 
         MockRedskyApi(BehaviorDelegate<RedskyApi> delegate) {
             this.delegate = delegate
         }
 
         @Override
-        Call<RedskyResponse> get(long id, List<String> exclude) {
+        CompletableFuture<RedskyResponse> get(long id, List<String> exclude) {
             RedskyProduct redskyProduct = products.get(id)
             return delegate
                     .returningResponse(new RedskyResponse(redskyProduct ?: notFound))

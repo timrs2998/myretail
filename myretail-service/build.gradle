@@ -12,6 +12,7 @@ dependencies {
     compile("javax.inject:javax.inject:$javaxInjectVersion")
     compile("com.squareup.retrofit2:retrofit:$retrofitVersion")
     compile("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
+    compile("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
     compile("org.cassandraunit:cassandra-unit-spring:$cassandraUnitSpringVersion")
 
     runtime('org.springframework.boot:spring-boot-devtools')
