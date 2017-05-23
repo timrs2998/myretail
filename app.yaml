@@ -10,3 +10,8 @@ env_variables:
 
 health_check:
   enable_health_check: True
+
+handlers:
+- url: /.well-known
+  static_dir: .well-known
+
