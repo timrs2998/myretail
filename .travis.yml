@@ -6,13 +6,13 @@ services:
 - docker
 script: "./gradlew build"
 after_success:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - export REPO=timrs2998/myretail
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - docker build -f Dockerfile -t $REPO:$COMMIT .
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-  - docker push $REPO
+- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- export REPO=timrs2998/myretail
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+- docker build -f Dockerfile -t $REPO:$COMMIT .
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker push $REPO
 env:
   global:
   # DOCKER_EMAIL, DOCKER_USER, and DOCKER_PASS
@@ -26,5 +26,4 @@ deploy:
   project: myretail-168318
 before_install:
 - openssl aes-256-cbc -K $encrypted_94605e3c0828_key -iv $encrypted_94605e3c0828_iv
-  -in myretail-cf3cadbb4bb5.json.enc -out ~\/Downloads/myretail-cf3cadbb4bb5.json
-  -d
+  -in myretail-cf3cadbb4bb5.json.enc -out myretail-cf3cadbb4bb5.json -d
