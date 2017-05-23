@@ -22,7 +22,7 @@ env:
   - COMMIT=${TRAVIS_COMMIT::8}
 deploy:
   provider: gae
-  keyfile: "./myretail-cf3cadbb4bb5.json.enc"
+  keyfile: "./myretail-cf3cadbb4bb5.json"
   project: myretail-168318
 before_install:
 - openssl aes-256-cbc -K $encrypted_94605e3c0828_key -iv $encrypted_94605e3c0828_iv
