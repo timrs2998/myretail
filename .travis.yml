@@ -20,6 +20,11 @@ env:
   - secure: MJOsGMcBUMuHFnggwE/356ga/cOSRe6FD1gkgZ5ckxlmXU6SjHTS9jClXk4zdqtwUWwyTpPa1CG+17pqwbe0r+EQEVsQU2x/PdANUUUZVu4cn08nc37HywmrGgTiV7jle05qhjcq/bhrtC5wuRSp2+nyS5vamOREJyIdIZqvhiLwW6xgpo3nvEjBO1CJmQFuhh4jbZr3OEvFp3NBZmObcT0+VSuvnF1Nyy+JaCbCZOB5ySocMBoFtMkB/QneIQmFTxtYOI2EQGjtV3b/tEiM1h+VPMTron3BNYljVzfQ6wDZtqX6CB5BvNmPLtLKeI9hmLCO1OkYoaKkX/fyjdKX9GbLlfKnGoCYjYBAubLvyuHZ1srvli7hIKD9jLyJ9vUV5Gb+YlsuEKgqLYjKRAbH1cC+A86KXPHZMf+xmvxLOjhxskf3xPRJo3hePQEhT1hs8WjDTtyq32QRoZh3Oo+jxG8rCWx9r68R0UWTHbaeyPAYuBkaCBAGuG73ne5PuTheMqphrK9osm5S8ZOqSl57usvZVUyYX+3YSS3gKUxSj+jP8X/biz2JjqQfFzToB8b1C7xsdjMOS/npsY4bArtJ0GAe6UFRywslte3ASMUKkl/m0qbmBUmhKKCN+sSbGrkbo/9p+TnJK/sMz5f/Jz3iCbTcyMZdAfd23qzi8cu6Dao=
   - secure: CPw3li5aNiGQADYPhJtljWDE/CAMiIewCj9kLggrRNkIhNOP/SevQWe+qRxsqipPe35cgwUKd77YAoHe7ek+e6jwoPk0AVBqjPaBUJD+3+gXxWJ6YLDle6y5fNSZt7GUlmvbAd1uGKhPUDiGhik6ZdOtEoRx5m19zXdNtC3qH0sk5r7COjR1baPT8m8vsN9FPgSxLiYwpofw8GY/0kuuyaENjESpqJN6NOPalH+NGEmEy0WoTk2YpsR8Vu2076lu35JiBZKW1yzUWmoORtjolOV7k4KsnZpim24xMOGI3UHALxXsp/pkYr0PglmjUeifYJmxnexb+Y9C5l8LxKdi6v8yHrwIjVvNRFObJmsaBMpo81CTOPdxcEUDTV6DhG+MiTcgpze64VdrYKIl+ljAbXH5io4T0npanXDfH9BA3brFGd/PFoDjD9GfCgU7IYwVSwb291aln/b/aAO8M+9iWF8Uy9dSDycYTqH95Z4kIyNJq1Lko8/vENcKL/nNnzLyUkDOIuQKEDCXkD9KewXISxr61JhblSv2mXQSFWglp0JaoB61wfplsmKFTK2DV6qPCOHxBd7TplYaqKGgAvrPyy3CC2vj2ed5JMQdMm+ooZ05HPNouUwVy1Q4P0MgEhqOCnN+HPhm2frkJv5Q75vKcQj6OlKXcUecwDDS6JTXs3Y=
   - COMMIT=${TRAVIS_COMMIT::8}
-
-# Sources:
-# * https://sebest.github.io/post/using-travis-ci-to-build-docker-images/
+deploy:
+  provider: gae
+  keyfile: YOUR SERVICE ACCOUNT JSON FILE
+  project: myretail-168318
+before_install:
+- openssl aes-256-cbc -K $encrypted_94605e3c0828_key -iv $encrypted_94605e3c0828_iv
+  -in myretail-cf3cadbb4bb5.json.enc -out ~\/Downloads/myretail-cf3cadbb4bb5.json
+  -d
