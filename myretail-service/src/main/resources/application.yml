@@ -5,3 +5,5 @@ cassandra:
 embeddedCassandra.enabled: true
 endpoints.hypermedia.enabled: true
 management.security.enabled: false
+redsky:
+  uri: http://redsky.target.com/

@@ -10,10 +10,14 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-hateoas')
     compile('org.springframework.data:spring-data-rest-hal-browser')
     compile("javax.inject:javax.inject:$javaxInjectVersion")
+    compile("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    compile("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
+    compile("org.cassandraunit:cassandra-unit-spring:$cassandraUnitSpringVersion")
+
     runtime('org.springframework.boot:spring-boot-devtools')
 
+    testCompile("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
     testCompile("org.spockframework:spock-spring:$spockVersion")
-    compile("org.cassandraunit:cassandra-unit-spring:$cassandraUnitSpringVersion")
 }
