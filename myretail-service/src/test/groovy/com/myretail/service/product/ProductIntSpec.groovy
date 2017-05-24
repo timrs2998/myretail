@@ -14,7 +14,7 @@ class ProductIntSpec extends MyRetailApplicationIntSpec {
     @Autowired
     ProductPORepository repository
 
-    void setup() {
+    void cleanup() {
         repository.deleteAll()
     }
 
