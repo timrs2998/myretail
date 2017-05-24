@@ -21,10 +21,14 @@ env:
   - secure: CPw3li5aNiGQADYPhJtljWDE/CAMiIewCj9kLggrRNkIhNOP/SevQWe+qRxsqipPe35cgwUKd77YAoHe7ek+e6jwoPk0AVBqjPaBUJD+3+gXxWJ6YLDle6y5fNSZt7GUlmvbAd1uGKhPUDiGhik6ZdOtEoRx5m19zXdNtC3qH0sk5r7COjR1baPT8m8vsN9FPgSxLiYwpofw8GY/0kuuyaENjESpqJN6NOPalH+NGEmEy0WoTk2YpsR8Vu2076lu35JiBZKW1yzUWmoORtjolOV7k4KsnZpim24xMOGI3UHALxXsp/pkYr0PglmjUeifYJmxnexb+Y9C5l8LxKdi6v8yHrwIjVvNRFObJmsaBMpo81CTOPdxcEUDTV6DhG+MiTcgpze64VdrYKIl+ljAbXH5io4T0npanXDfH9BA3brFGd/PFoDjD9GfCgU7IYwVSwb291aln/b/aAO8M+9iWF8Uy9dSDycYTqH95Z4kIyNJq1Lko8/vENcKL/nNnzLyUkDOIuQKEDCXkD9KewXISxr61JhblSv2mXQSFWglp0JaoB61wfplsmKFTK2DV6qPCOHxBd7TplYaqKGgAvrPyy3CC2vj2ed5JMQdMm+ooZ05HPNouUwVy1Q4P0MgEhqOCnN+HPhm2frkJv5Q75vKcQj6OlKXcUecwDDS6JTXs3Y=
   - COMMIT=${TRAVIS_COMMIT::8}
 deploy:
-  provider: gae
-  keyfile: "./myretail-cf3cadbb4bb5.json"
-  project: myretail-168318
-  skip_cleanup: true
+  - provider: gae
+    keyfile: "./myretail-cf3cadbb4bb5.json"
+    project: myretail-168318
+    skip_cleanup: true
+#  - provider: bintray
+#    file: "Path to a descriptor file, containing information for the Bintray upload"
+#    user: "Bintray user"
+#    key: "Bintray API key"
 before_install:
 - openssl aes-256-cbc -K $encrypted_94605e3c0828_key -iv $encrypted_94605e3c0828_iv
   -in myretail-cf3cadbb4bb5.json.enc -out myretail-cf3cadbb4bb5.json -d
