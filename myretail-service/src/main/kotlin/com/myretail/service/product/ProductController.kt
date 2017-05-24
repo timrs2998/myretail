@@ -7,22 +7,20 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo
 import org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.bind.annotation.RequestMethod.GET
-import org.springframework.web.bind.annotation.RequestMethod.PUT
 import javax.inject.Inject
 
 @RepositoryRestController
-@RequestMapping("products")
+@RequestMapping(value = "products")
 class ProductController @Inject constructor(val service: ProductService) {
 
-    @RequestMapping(value = "{id}", method = arrayOf(GET))
+    @RequestMapping(value = "{id}", method = arrayOf(RequestMethod.GET))
     @ResponseBody
     fun get(@PathVariable id: Long): ResponseEntity<Resource<Product>> {
         val entity = service.get(id)
         return responseWithLink(entity)
     }
 
-    @RequestMapping(value = "{id}", method = arrayOf(PUT))
+    @RequestMapping(value = "{id}", method = arrayOf(RequestMethod.PUT))
     @ResponseBody
     fun update(@PathVariable id: Long, @RequestBody body: Product): ResponseEntity<Resource<Product>> {
         if (id != body.id) {
