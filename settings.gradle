@@ -1,2 +1,3 @@
 include 'myretail-api',
+        'myretail-client',
         'myretail-service'

@@ -1,5 +1,6 @@
 package com.myretail.service
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.transform.CompileStatic
 import org.cassandraunit.spring.CassandraUnitDependencyInjectionTestExecutionListener
 import org.cassandraunit.spring.EmbeddedCassandra
@@ -29,6 +30,9 @@ abstract class MyRetailApplicationIntSpec extends Specification {
 
     @Value('${local.server.port}')
     Integer port
+
+    @Autowired
+    ObjectMapper objectMapper
 
     @Autowired
     TestRestTemplate restTemplate

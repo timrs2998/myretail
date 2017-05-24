@@ -25,7 +25,9 @@
 
   "files":
   [
-    {"includePattern": "**/*/build/libs/(.*.jar)", "excludePattern": "*.original", "uploadPattern": "/$1.jar"}
+    {"includePattern": "myretail-api/build/libs/(.*jar)", "excludePattern": ".*original", "uploadPattern": "/$1jar"},
+    {"includePattern": "myretail-client/build/libs/(.*jar)", "excludePattern": ".*original", "uploadPattern": "/$1jar"},
+    {"includePattern": "myretail-service/build/libs/(.*jar)", "excludePattern": ".*original", "uploadPattern": "/$1jar"}
   ],
   "publish": true
 }

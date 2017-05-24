@@ -37,6 +37,7 @@ deploy:
     key:
       secure: pd9ueCLGkeR5SBGC77quo18oNr2fasQgw1INOYpjf1LdTqoZLQxA7DXCFcgMqWB59fM22J0M0bJlmQAGRDG0dQUxf4dMyarOqKils3cOanjOWdLGJYYb7HOBlIxzLi+jMo17t176HqRuVgH3O8PFFHFPUDhSLFCz2k0auoneM+CddvL2d1eGGDWtzX9NBV0nc9WW2vYkvRCCtdrPve2t1WgqFVwJ7Cqsu6ivfAxGOxY+AD1umq1/jJroqWytnRJf6wkWpKxEFuiO+FQWRDb255gmqOm5MY51iKtSY3R2WKX0lOBHWzNZsfA87qZIbTetqqWJhY0SwOVWq0kljsBEmK5TEyM2YjKh75PjuxZQYWM52nX1Ic/1FMT0jZiMricpiljVQ5BP34LXwlwl3FEtaeaT09DMi5s3ib2JW8tQNAe9ninMSXteTJWoA46JP/Omu2KVOalhNBXTNP//YwBBGDxLBCE0VhRYQCMdkqjRhR9Vk/X/MDx8IoNx+WD2JYBJOEnqIqeyC3CFrHSZPxhJnv5TZc3FQFdutmKA60w+cWRNoR343n5kHahjhojAzgggsNd0HYSc0KPCq2a5IJ5lhjGRfWFRDQxeTp3edaSQ8jil6/6HknwTXVUzqPn/gJWh+5FynQOW54oYj5IyqWeyqYSgxm8RB0GrmT7juddSRgg=
     skip_cleanup: true
+    dry_run: true
   - provider: gae
     keyfile: "./myretail-cf3cadbb4bb5.json"
     project: myretail-168318
