@@ -31,15 +31,16 @@ env:
   - secure: CPw3li5aNiGQADYPhJtljWDE/CAMiIewCj9kLggrRNkIhNOP/SevQWe+qRxsqipPe35cgwUKd77YAoHe7ek+e6jwoPk0AVBqjPaBUJD+3+gXxWJ6YLDle6y5fNSZt7GUlmvbAd1uGKhPUDiGhik6ZdOtEoRx5m19zXdNtC3qH0sk5r7COjR1baPT8m8vsN9FPgSxLiYwpofw8GY/0kuuyaENjESpqJN6NOPalH+NGEmEy0WoTk2YpsR8Vu2076lu35JiBZKW1yzUWmoORtjolOV7k4KsnZpim24xMOGI3UHALxXsp/pkYr0PglmjUeifYJmxnexb+Y9C5l8LxKdi6v8yHrwIjVvNRFObJmsaBMpo81CTOPdxcEUDTV6DhG+MiTcgpze64VdrYKIl+ljAbXH5io4T0npanXDfH9BA3brFGd/PFoDjD9GfCgU7IYwVSwb291aln/b/aAO8M+9iWF8Uy9dSDycYTqH95Z4kIyNJq1Lko8/vENcKL/nNnzLyUkDOIuQKEDCXkD9KewXISxr61JhblSv2mXQSFWglp0JaoB61wfplsmKFTK2DV6qPCOHxBd7TplYaqKGgAvrPyy3CC2vj2ed5JMQdMm+ooZ05HPNouUwVy1Q4P0MgEhqOCnN+HPhm2frkJv5Q75vKcQj6OlKXcUecwDDS6JTXs3Y=
   - COMMIT=${TRAVIS_COMMIT::8}
 deploy:
-  - provider: gae
-    keyfile: "./myretail-cf3cadbb4bb5.json"
-    project: myretail-168318
-    skip_cleanup: true
   - provider: bintray
     file: "./descriptor.json"
     user: timrs2998
     key:
       secure: pd9ueCLGkeR5SBGC77quo18oNr2fasQgw1INOYpjf1LdTqoZLQxA7DXCFcgMqWB59fM22J0M0bJlmQAGRDG0dQUxf4dMyarOqKils3cOanjOWdLGJYYb7HOBlIxzLi+jMo17t176HqRuVgH3O8PFFHFPUDhSLFCz2k0auoneM+CddvL2d1eGGDWtzX9NBV0nc9WW2vYkvRCCtdrPve2t1WgqFVwJ7Cqsu6ivfAxGOxY+AD1umq1/jJroqWytnRJf6wkWpKxEFuiO+FQWRDb255gmqOm5MY51iKtSY3R2WKX0lOBHWzNZsfA87qZIbTetqqWJhY0SwOVWq0kljsBEmK5TEyM2YjKh75PjuxZQYWM52nX1Ic/1FMT0jZiMricpiljVQ5BP34LXwlwl3FEtaeaT09DMi5s3ib2JW8tQNAe9ninMSXteTJWoA46JP/Omu2KVOalhNBXTNP//YwBBGDxLBCE0VhRYQCMdkqjRhR9Vk/X/MDx8IoNx+WD2JYBJOEnqIqeyC3CFrHSZPxhJnv5TZc3FQFdutmKA60w+cWRNoR343n5kHahjhojAzgggsNd0HYSc0KPCq2a5IJ5lhjGRfWFRDQxeTp3edaSQ8jil6/6HknwTXVUzqPn/gJWh+5FynQOW54oYj5IyqWeyqYSgxm8RB0GrmT7juddSRgg=
+    skip_cleanup: true
+  - provider: gae
+    keyfile: "./myretail-cf3cadbb4bb5.json"
+    project: myretail-168318
+    skip_cleanup: true
 before_install:
 - openssl aes-256-cbc -K $encrypted_94605e3c0828_key -iv $encrypted_94605e3c0828_iv
   -in myretail-cf3cadbb4bb5.json.enc -out myretail-cf3cadbb4bb5.json -d

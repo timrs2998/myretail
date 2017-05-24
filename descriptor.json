@@ -1,7 +1,7 @@
 {
   "package": {
     "name": "myretail",
-    "repo": "myretail",
+    "repo": "maven",
     "subject": "MyRetail JARs",
     "desc": "Aggregates price information with product name from Redsky",
     "website_url": "https://github.com/timrs2998/myretail",
@@ -9,7 +9,7 @@
     "vcs_url": "https://github.com/timrs2998/myretail.git",
     "github_use_tag_release_notes": true,
     "github_release_notes_file": "RELEASE.txt",
-    "licenses": ["GPLv3"],
+    "licenses": ["GPL-3.0"],
     "labels": ["myretail"],
     "public_download_numbers": false,
     "public_stats": false
