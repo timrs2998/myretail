@@ -1,7 +1,7 @@
 {
   "package": {
     "name": "myretail",
-    "repo": "maven",
+    "repo": "myretail",
     "subject": "MyRetail JARs",
     "desc": "Aggregates price information with product name from Redsky",
     "website_url": "https://github.com/timrs2998/myretail",
