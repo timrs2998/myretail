@@ -4,6 +4,15 @@ jdk:
 - openjdk8
 services:
 - docker
+cache:
+  directories:
+  - $HOME/.gradle/wrapper
+  - $HOME/.gradle/native
+  - $HOME/.gradle/daemon
+  - $HOME/.gradle/caches/jars-1
+  - $HOME/.gradle/caches/jars-2
+  - $HOME/.gradle/caches/jars-3
+  - $HOME/.gradle/caches/3.4.1
 script: "./gradlew build"
 after_success:
 - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
