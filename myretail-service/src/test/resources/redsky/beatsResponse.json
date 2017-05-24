@@ -1,0 +1,197 @@
+{
+  "product": {
+    "deep_red_labels": {
+      "total_count": 2,
+      "labels": [
+        {
+          "count": 0,
+          "id": "tbqhml",
+          "name": "Headphones and Headsets",
+          "type": "merchandise type",
+          "priority": 0
+        },
+        {
+          "count": 0,
+          "id": "gs18jw",
+          "name": "VC",
+          "type": "relationship type",
+          "priority": 0
+        }
+      ]
+    },
+    "available_to_promise_network": {
+      "product_id": "16696652",
+      "id_type": "TCIN",
+      "available_to_promise_quantity": 0.0,
+      "availability": "UNAVAILABLE",
+      "online_available_to_promise_quantity": 0.0,
+      "stores_available_to_promise_quantity": 0.0,
+      "availability_status": "DISCONTINUED",
+      "multichannel_options": [
+        "SHIPSTORE"
+      ]
+    },
+    "item": {
+      "tcin": "16696652",
+      "bundle_components": {
+        "is_assortment": true,
+        "is_kit_master": false
+      },
+      "dpci": "057-01-1841",
+      "upc": "848447021161",
+      "product_description": {
+        "title": "Beats Solo 2 Wireless - Black (MHNG2AM/A)",
+        "downstream_description": "Immerse yourself in an emotional experience. The Solo2 has a more dynamic, wider range of sound, with a clarity that will bring you closer to what the artist intended you to hear. Engineered for comfort. Starting at the center of the flexible headband, the frame of the headphone has been curved like never before, giving the Solo2 a custom-fit feeling. The earcups have been ergonomically angled to complete this natural fit, with pivots for optimal comfort and sound delivery. Finally, the earcups' premium material helps dissipate heat and minimize sound leakage. Disciplined decisions in engineering and material selection have created a more durable headphone that is equipped for extended use. Easily foldable, this premium headphone is ready for your life on the go. Take control. With the color-matched RemoteTalk™ cable, you can change songs, adjust the volume and even take calls, without having to reach for your device.",
+        "bullet_description": [
+          "<B>Audio Headset Features:</B> Foldable Design, wireless",
+          "<B>Connectivity:</B> 3.5mm jack",
+          "<B>Wireless Technology:</B> Bluetooth",
+          "<B>Cable/Cord Length:</B> 53.580 inches L",
+          "<B>Ear Cushion Material:</B> Leatherette",
+          "<B>Weight:</B> 2.160 pounds",
+          "<B>Battery:</B> no battery used",
+          "<B>Targeted Audience:</B> All Ages",
+          "<strong>Warranty Information:</strong>To obtain a copy of the manufacturer's warranty for this item, please call Target Guest Services at 1-800-591-3869."
+        ],
+        "soft_bullets": {
+          "title": "highlights",
+          "bullets": [
+            "Updated acoustics enhance clarity",
+            "Streamlined lightweight design for improved comfort",
+            "Durable and compact folding design for easy portability",
+            "Take calls and control music on your iOS devices with RemoteTalk cable"
+          ]
+        },
+        "general_description": "Beats Solo 2 Wireless Headphone Black"
+      },
+      "parent_items": "17215349",
+      "buy_url": "http://www.target.com/p/beats-solo-2-wireless-black-mhng2am-a/-/A-16696652",
+      "variation": {
+        "color": "BLACK",
+        "flexible_themes": {
+          "color": [
+            "BLACK"
+          ]
+        }
+      },
+      "enrichment": {
+        "images": [
+          {
+            "base_url": "https://target.scene7.com/is/image/Target/",
+            "primary": "16696652",
+            "swatch": "16696652_Swatch",
+            "alternate_urls": [
+              "16696652_Alt01",
+              "16696652_Alt02",
+              "16696652_Alt03",
+              "16696652_Alt04",
+              "16696652_Alt05"
+            ]
+          }
+        ],
+        "video_content_list": [
+          {
+            "sequence_id": 1,
+            "entry_id": "0_123bcvs6",
+            "title": "Beats Solo 2 Wireless Headphones",
+            "runtime": 1.2
+          }
+        ],
+        "sales_classification_nodes": [
+          {
+            "node_id": "4y89s",
+            "wcs_id": "1646505"
+          },
+          {
+            "node_id": "5xteg",
+            "wcs_id": "4570"
+          },
+          {
+            "node_id": "4sk9q",
+            "wcs_id": "2340011"
+          },
+          {
+            "node_id": "wvip3"
+          },
+          {
+            "node_id": "4y71v"
+          }
+        ]
+      },
+      "return_method": "This item can be returned to any Target store or Target.com.",
+      "handling": {
+        "import_designation_description": "Imported"
+      },
+      "recall_compliance": {
+        "is_product_recalled": false
+      },
+      "tax_category": {
+        "tax_class": "G",
+        "tax_code_id": 8082,
+        "tax_code": "08082"
+      },
+      "display_option": {
+        "is_size_chart": false,
+        "is_warranty": true
+      },
+      "fulfillment": {
+        "is_po_box_prohibited": true,
+        "po_box_prohibited_message": "We regret that this item cannot be shipped to PO Boxes."
+      },
+      "package_dimensions": {
+        "weight": "1.85",
+        "weight_unit_of_measure": "POUND",
+        "width": "5.9",
+        "depth": "8.4",
+        "height": "4.5",
+        "dimension_unit_of_measure": "INCH"
+      },
+      "environmental_segmentation": {
+        "is_lead_disclosure": false
+      },
+      "manufacturer": {
+        "id": "Beats Electronics, LLC",
+        "part_number": "MHNG2AM/A"
+      },
+      "product_classification": {
+        "product_type": "542",
+        "product_type_name": "ELECTRONICS",
+        "item_type_name": "Headphones and Headsets",
+        "item_type": {
+          "category_type": "Item Type: Electronics",
+          "type": 59911919,
+          "name": "headphones"
+        }
+      },
+      "product_brand": {
+        "brand": "Beats",
+        "manufacturer_brand": "Beats"
+      },
+      "item_state": "READY_FOR_LAUNCH",
+      "specifications": [],
+      "attributes": {
+        "gift_wrapable": "N",
+        "has_prop65": "N",
+        "is_hazmat": "N",
+        "manufacturing_brand": "Beats",
+        "max_order_qty": 5,
+        "merch_class": "PORTABLE ELECTRONICS",
+        "merch_subclass": 1,
+        "return_method": "This item can be returned to any Target store or Target.com.",
+        "ship_to_restriction": "United States Minor Outlying Islands,Virgin Islands, U.S.,Northern Mariana Islands,Guam (see also separate entry under GU),American Samoa (see also separate entry under AS)"
+      },
+      "country_of_origin": "CN",
+      "relationship_type_code": "Variation Child",
+      "subscription_eligible": false,
+      "ribbons": [],
+      "tags": [],
+      "ship_to_restriction": "This item cannot be shipped to the following locations: United States Minor Outlying Islands, Virgin Islands, U.S., Northern Mariana Islands, Guam, American Samoa",
+      "estore_item_status_code": "D",
+      "return_policies": {
+        "user": "Regular Guest",
+        "policyDays": "30",
+        "guestMessage": "This item must be returned within 30 days of the ship date. See return policy for details."
+      }
+    }
+  }
+}

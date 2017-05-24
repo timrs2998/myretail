@@ -21,10 +21,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         MyRetailApplication,
         MockConfiguration
 ])
-@EmbeddedCassandra
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @TestExecutionListeners(listeners = [
-        CassandraUnitDependencyInjectionTestExecutionListener,
         DependencyInjectionTestExecutionListener
 ])
 abstract class MyRetailApplicationIntSpec extends Specification {

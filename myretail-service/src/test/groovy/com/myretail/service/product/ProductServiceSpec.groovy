@@ -3,13 +3,13 @@ package com.myretail.service.product
 import com.myretail.api.CurrencyCode
 import com.myretail.api.Price
 import com.myretail.api.Product
-import com.myretail.service.api.RedskyApi
-import com.myretail.service.api.RedskyAvailableToPromiseNetwork
-import com.myretail.service.api.RedskyDeepRedLabels
-import com.myretail.service.api.RedskyItem
-import com.myretail.service.api.RedskyProduct
-import com.myretail.service.api.RedskyProductDescription
-import com.myretail.service.api.RedskyResponse
+import com.myretail.service.redsky.RedskyApi
+import com.myretail.service.redsky.AvailableToPromiseNetwork
+import com.myretail.service.redsky.DeepRedLabels
+import com.myretail.service.redsky.Item
+import com.myretail.service.redsky.RedskyProduct
+import com.myretail.service.redsky.ProductDescription
+import com.myretail.service.redsky.RedskyResponse
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.springframework.data.rest.webmvc.ResourceNotFoundException
@@ -39,9 +39,9 @@ class ProductServiceSpec extends Specification {
         given:
         ProductPO productPO = new ProductPO(1, 23.3, CurrencyCode.USD)
         RedskyProduct redskyProduct = new RedskyProduct(
-                new RedskyAvailableToPromiseNetwork(1),
-                new RedskyDeepRedLabels(),
-                new RedskyItem(new RedskyProductDescription('hello'))
+                new AvailableToPromiseNetwork(1),
+                new DeepRedLabels(),
+                new Item(new ProductDescription('hello'))
         )
         RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
 
@@ -63,9 +63,9 @@ class ProductServiceSpec extends Specification {
     void 'should get product - not in database'() {
         given:
         RedskyProduct redskyProduct = new RedskyProduct(
-                new RedskyAvailableToPromiseNetwork(1),
-                new RedskyDeepRedLabels(),
-                new RedskyItem(new RedskyProductDescription('hello'))
+                new AvailableToPromiseNetwork(1),
+                new DeepRedLabels(),
+                new Item(new ProductDescription('hello'))
         )
         RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
 
@@ -115,9 +115,9 @@ class ProductServiceSpec extends Specification {
         given:
         Product request = new Product(1L, 'hello', new Price(23.3, CurrencyCode.USD))
         RedskyProduct redskyProduct = new RedskyProduct(
-                new RedskyAvailableToPromiseNetwork(1),
-                new RedskyDeepRedLabels(),
-                new RedskyItem(new RedskyProductDescription('hello'))
+                new AvailableToPromiseNetwork(1),
+                new DeepRedLabels(),
+                new Item(new ProductDescription('hello'))
         )
         RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
         ProductPO saved = new ProductPO(1L, 23.3, CurrencyCode.USD)
@@ -157,9 +157,9 @@ class ProductServiceSpec extends Specification {
         given:
         Product request = new Product(1L, 'hello', null)
         RedskyProduct redskyProduct = new RedskyProduct(
-                new RedskyAvailableToPromiseNetwork(1),
-                new RedskyDeepRedLabels(),
-                new RedskyItem(new RedskyProductDescription('hello'))
+                new AvailableToPromiseNetwork(1),
+                new DeepRedLabels(),
+                new Item(new ProductDescription('hello'))
         )
         RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
 

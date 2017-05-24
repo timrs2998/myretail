@@ -1,13 +1,13 @@
 package com.myretail.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.myretail.service.api.RedskyApi
-import com.myretail.service.api.RedskyAvailableToPromiseNetwork
-import com.myretail.service.api.RedskyDeepRedLabels
-import com.myretail.service.api.RedskyItem
-import com.myretail.service.api.RedskyProduct
-import com.myretail.service.api.RedskyProductDescription
-import com.myretail.service.api.RedskyResponse
+import com.myretail.service.redsky.RedskyApi
+import com.myretail.service.redsky.AvailableToPromiseNetwork
+import com.myretail.service.redsky.DeepRedLabels
+import com.myretail.service.redsky.Item
+import com.myretail.service.redsky.RedskyProduct
+import com.myretail.service.redsky.ProductDescription
+import com.myretail.service.redsky.RedskyResponse
 import com.myretail.service.config.RedskyConfig
 import groovy.transform.CompileStatic
 import org.springframework.context.annotation.Bean
@@ -26,14 +26,14 @@ import java.util.concurrent.TimeUnit
 class MockConfiguration extends RedskyConfig {
 
     static RedskyProduct existing = new RedskyProduct(
-            new RedskyAvailableToPromiseNetwork(13860428L),
-            new RedskyDeepRedLabels(),
-            new RedskyItem(new RedskyProductDescription('The Big Lebowski (Blu-ray) (Widescreen)'))
+            new AvailableToPromiseNetwork(13860428L),
+            DeepRedLabels.INSTANCE,
+            new Item(new ProductDescription('The Big Lebowski (Blu-ray) (Widescreen)'))
     )
     static RedskyProduct notFound = new RedskyProduct(
             null,
             null,
-            new RedskyItem(null)
+            new Item(null)
     )
 
     @Bean
@@ -60,7 +60,7 @@ class MockConfiguration extends RedskyConfig {
     private static class MockRedskyApi implements RedskyApi {
         final BehaviorDelegate<RedskyApi> delegate
         final Map<Long, RedskyProduct> products = [
-                (existing.availableToPromiseNetwork.product_id): existing
+                (existing.availableToPromiseNetwork.productId): existing
         ]
 
         MockRedskyApi(BehaviorDelegate<RedskyApi> delegate) {

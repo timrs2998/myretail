@@ -2,9 +2,9 @@ package com.myretail.service.product
 
 import com.myretail.api.Price
 import com.myretail.api.Product
-import com.myretail.service.api.RedskyApi
-import com.myretail.service.api.RedskyProduct
-import com.myretail.service.api.RedskyResponse
+import com.myretail.service.redsky.RedskyApi
+import com.myretail.service.redsky.RedskyProduct
+import com.myretail.service.redsky.RedskyResponse
 import org.springframework.data.rest.webmvc.ResourceNotFoundException
 import org.springframework.stereotype.Component
 import retrofit2.HttpException
@@ -62,7 +62,7 @@ class ProductService @Inject constructor(val repository: ProductPORepository,
 
     private fun buildProduct(redskyProduct: RedskyProduct, price: Price? = null): Product {
         return Product(
-                id = redskyProduct.availableToPromiseNetwork!!.product_id,
+                id = redskyProduct.availableToPromiseNetwork!!.productId,
                 name = redskyProduct.item.productDescription!!.title,
                 currentPrice = price
         )
