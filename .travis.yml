@@ -22,6 +22,9 @@ after_success:
 - docker tag $REPO:$COMMIT $REPO:$TAG
 - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
 - docker push $REPO
+after_failure:
+- "cat myretail-api/build/reports/tests/test/index.html"
+- "cat myretail-service/build/reports/tests/test/index.html"
 env:
   global:
   # DOCKER_EMAIL, DOCKER_USER, and DOCKER_PASS
