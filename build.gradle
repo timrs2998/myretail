@@ -47,4 +47,10 @@ subprojects {
         testCompile("org.spockframework:spock-core:$spockVersion")
         testCompile("cglib:cglib:$cglibVersion")
     }
+
+    test {
+        testLogging {
+            exceptionFormat = 'full'
+        }
+    }
 }
