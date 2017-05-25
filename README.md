@@ -32,7 +32,7 @@ tagged and pushed to [Docker Hub](https://hub.docker.com/r/timrs2998/myretail/).
 To pull down and run the latest docker image:
 
 ```bash
-$ docker run timrs2998/myretail
+$ docker run -p 8080:8080 timrs2998/myretail
 ```
 
 ## Usage
