@@ -82,8 +82,9 @@ up-to-date.
 
 Some endpoints of interest include:
 
- * [/docs](https://www.myretail.pw/docs)
- * [/docs-actuator](https://www.myretail.pw/docs-actuator)
+ * [/](https://www.myretail.pw/) (HAL API Browser)
+ * [/docs](https://www.myretail.pw/docs) (API documenation)
+ * [/docs-actuator](https://www.myretail.pw/docs-actuator) (Actuator and HATEOS documentation)
   * [/health](https://www.myretail.pw/health)
   * [/info](https://www.myretail.pw/info)
 
