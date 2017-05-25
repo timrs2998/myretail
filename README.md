@@ -28,7 +28,7 @@ otherwise.
 
 As an alternative to building the source, you can use Docker. All builds are 
 tagged and pushed to [Docker Hub](https://hub.docker.com/r/timrs2998/myretail/).
-__
+
 To pull down and run the latest docker image:
 
 ```bash
@@ -87,6 +87,4 @@ deploys the latest code to Google Container Engine.
 ## See also
 
  * [Docker Hub Repo](https://hub.docker.com/r/timrs2998/myretail/)
- * [Bintray Repo](https://bintray.com/timrs2998/myretail)
  * [Travis Job](https://travis-ci.org/timrs2998/myretail)
- * [Google App Engine](https://console.cloud.google.com/kubernetes/list?project=myretail-168318)
