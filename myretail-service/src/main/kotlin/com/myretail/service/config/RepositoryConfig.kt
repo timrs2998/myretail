@@ -1,5 +1,6 @@
 package com.myretail.service.config
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.myretail.service.product.ProductPO
@@ -12,6 +13,7 @@ class RepositoryConfig : RepositoryRestConfigurerAdapter() {
 
     override fun configureJacksonObjectMapper(objectMapper: ObjectMapper) {
         objectMapper.propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
     }
 
     override fun configureRepositoryRestConfiguration(config: RepositoryRestConfiguration) {

@@ -1,7 +1,23 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.asciidoctor:asciidoctor-gradle-plugin:$asciiDoctor")
+    }
+}
+
+plugins {
+    id 'com.gorylenko.gradle-git-properties' version '1.4.17'
+}
+
 apply plugin: 'kotlin-spring'
+apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:1.2.1.RELEASE'
+
     compile project(':myretail-api')
     testCompile project(':myretail-client')
 
@@ -24,6 +40,30 @@ dependencies {
     testCompile("org.spockframework:spock-spring:$spockVersion")
 }
 
+springBoot  {
+    buildInfo()
+}
+
+// asciidoctor
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+test {
+    outputs.dir snippetsDir
+}
+asciidoctor {
+    attributes 'snippets': snippetsDir
+    inputs.dir snippetsDir
+    dependsOn test
+}
+jar {
+    dependsOn asciidoctor
+    from ("$asciidoctor.outputDir/html5") {
+        into 'static/docs'
+    }
+}
+
+// cassandra unit
 clean.doFirst {
     delete "$projectDir/target/"
 }

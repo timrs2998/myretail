@@ -1,0 +1,57 @@
+[[get-product]]
+== Get Product
+
+A `GET` request by id returns a product containing the name and price
+information.
+
+include::{snippets}/get-product-with-price/response-fields.adoc[]
+
+=== Example request
+
+include::{snippets}/get-product-with-price/curl-request.adoc[]
+
+=== Example response
+
+If you `GET` a product without price information, you will see:
+
+include::{snippets}/get-product-without-price/http-response.adoc[]
+
+However, if you `GET` a product with price information, you will see:
+
+include::{snippets}/get-product-with-price/http-response.adoc[]
+
+=== Response structure
+
+include::{snippets}/get-product-with-price/response-fields.adoc[]
+
+[[update-product-price]]
+== Update Product Price
+
+A `PUT` request can change a product's current price, add a price, or remove
+a price.
+
+include::{snippets}/update-product-price/response-fields.adoc[]
+
+=== Example request
+
+Given a request to add or update price information:
+
+include::{snippets}/update-product-price/curl-request.adoc[]
+
+Given a request to remove price information:
+
+include::{snippets}/remove-product-price/curl-request.adoc[]
+
+=== Example response
+
+If you add or update price information for a product, you will see:
+
+include::{snippets}/update-product-price/http-response.adoc[]
+
+However, if you remove price information from a product, you will see:
+
+include::{snippets}/remove-product-price/http-response.adoc[]
+
+=== Response structure
+
+include::{snippets}/update-product-price/response-fields.adoc[]

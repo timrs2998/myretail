@@ -3,7 +3,11 @@ cassandra:
   keyspaceName: myretail
   port: 9142
 embeddedCassandra.enabled: true
-endpoints.hypermedia.enabled: true
-management.security.enabled: false
+endpoints:
+  docs.path: /docs-actuator
+  hypermedia.enabled: true
+management:
+  info.git.mode: full
+  security.enabled: false
 redsky:
   uri: http://redsky.target.com/

@@ -1,8 +1,9 @@
 package com.myretail.api
 
 import java.math.BigDecimal
+import javax.validation.constraints.NotNull
 
 data class Price(
-        val value: BigDecimal,
-        val currencyCode: CurrencyCode
+        @field:NotNull val value: BigDecimal,
+        @field:NotNull val currencyCode: CurrencyCode
 )

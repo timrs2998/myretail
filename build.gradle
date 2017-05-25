@@ -1,18 +1,17 @@
 buildscript {
-    ext {
-        kotlinVersion = '1.1.2'
-        springBootVersion = '1.5.3.RELEASE'
-    }
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
+        classpath("com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion")
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
     }
 }
 
+// Use "./gradlew dependencyUpdates -Drevision=release" to check dependencies
+apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'eclipse'
 
 allprojects {

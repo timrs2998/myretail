@@ -1,7 +1,10 @@
 package com.myretail.api
 
+import javax.validation.Valid
+import javax.validation.constraints.NotNull
+
 data class Product(
-        val id: Long,
-        val name: String,
-        val currentPrice: Price?
+        @field:NotNull val id: Long,
+        @field:NotNull val name: String,
+        @field:Valid val currentPrice: Price?
 )

@@ -74,6 +74,19 @@ Sample queries:
  * [GET https://www.myretail.pw/products/16696652](https://www.myretail.pw/products/16696652)
  * [GET https://www.myretail.pw/products/13860428](https://www.myretail.pw/products/13860428)
 
+## Documentation
+
+API documentation is written using [asciidoctor](http://asciidoctor.org/). The
+integration tests generate documentation snippets and ensure they are always
+up-to-date.
+
+Some endpoints of interest include:
+
+ * [/docs](https://www.myretail.pw/docs)
+ * [/docs-actuator](https://www.myretail.pw/docs-actuator)
+  * [/health](https://www.myretail.pw/health)
+  * [/info](https://www.myretail.pw/info)
+
 ## Testing
 
 There are several unit and integration tests written with 
