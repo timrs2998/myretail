@@ -1,5 +1,8 @@
 # myretail
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://travis-ci.org/timrs2998/myretail.svg?branch=master)](https://travis-ci.org/timrs2998/myretail)
+
 myretail is an implementation of a products API that aggregates price 
 details by ID. It is a [Spring Boot](https://projects.spring.io/spring-boot/) 
 microservice backed by a [Cassandra](https://cassandra.apache.org/) database
