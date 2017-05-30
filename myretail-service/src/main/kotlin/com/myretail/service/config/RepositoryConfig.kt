@@ -16,8 +16,4 @@ class RepositoryConfig : RepositoryRestConfigurerAdapter() {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
     }
 
-    override fun configureRepositoryRestConfiguration(config: RepositoryRestConfiguration) {
-        config.exposeIdsFor(ProductPO::class.java)
-    }
-
 }
