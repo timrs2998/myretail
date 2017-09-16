@@ -3,6 +3,7 @@ language: java
 jdk:
 - openjdk8
 services:
+- cassandra
 - docker
 cache:
   directories:

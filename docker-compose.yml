@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  app:
+    build: .
+    environment:
+      CASSANDRA_CONTACTPOINTS: db
+      CASSANDRA_PORT: '9042'
+    links:
+    - db
+    ports:
+    - '8080:8080'
+    restart: unless-stopped
+  db:
+    image: library/cassandra:3.11.0
+    ports:
+    - '9042:9042'

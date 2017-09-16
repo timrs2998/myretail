@@ -10,29 +10,76 @@ and the redsky API.
 
 ## Build and Run
 
-Assuming you installed [JDK 8](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwibkPOQ24fUAhUL3YMKHZwBAUoQFggoMAA&url=http%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html&usg=AFQjCNEfygdKmZ1D2xJzvYIvnYbmmXWqsA&sig2=QDn2YLxSU9EOSn3BpuzzfA)
-and [git](https://git-scm.com/downloads), you can build and run the project:
+Assuming you installed [git](https://git-scm.com/downloads), you can clone
+and enter the project directory:
 
 ```bash
 $ git clone git@github.com:timrs2998/myretail.git
 $ cd myretail/
-$ ./gradlew build
-$ java -jar myretail-service/build/libs/myretail-service*.jar
 ```
 
-To ease setup, the myretail will default to an in-memory Cassandra 
-database but [can be configured](./myretail-service/src/main/resources/application.yml)
-otherwise. 
+### Start Cassandra
 
-## Run with docker
+The app will fail to run and build without Cassandra. To start Cassandra, run:
 
-As an alternative to building the source, you can use Docker. All builds are 
-tagged and pushed to [Docker Hub](https://hub.docker.com/r/timrs2998/myretail/).
+```bash
+# Mac
+$ brew install cassandra
+$ brew services start cassandra
+
+# docker
+$ docker run -p 9042:9042 -t library/cassandra:3.11.0
+
+# docker-compose
+$ docker-compose up db
+
+# arch (from AUR)
+yaourt -S cassandra
+systemctl start cassandra
+```
+
+### Run the app
+
+Assuming you installed [JDK 8](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html)
+you can build and run the project:
+
+```bash
+# Build and run jar
+$ ./gradlew build
+$ java -jar myretail-service/build/libs/myretail-service*.jar
+
+# Or run via bootRun task
+$ ./gradlew myretail-service:bootRun
+```
+
+### Run with docker
+
+As an alternative to building from source with the JDK, you can use Docker. All 
+builds are tagged and pushed to [Docker Hub](https://hub.docker.com/r/timrs2998/myretail/).
 
 To pull down and run the latest docker image:
 
 ```bash
 $ docker run -p 8080:8080 timrs2998/myretail
+```
+
+### Run with docker-compose
+
+Start service:
+
+```bash
+$ docker-compose build
+$ docker-compose up
+```
+
+### Run with Minikube
+
+Start service:
+
+```bash
+minikube start
+kubectl apply --filename kubernetes/minikube --recursive
+kubectl port forward ..
 ```
 
 ## Usage

@@ -11,7 +11,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import javax.inject.Inject
 
 @Configuration
-open class RedskyConfig {
+class RedSkyConfig {
 
     @Value("\${redsky.uri}")
     var redskyUri: String? = null

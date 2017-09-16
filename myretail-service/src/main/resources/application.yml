@@ -1,8 +1,7 @@
 cassandra:
   contactPoints: localhost
   keyspaceName: myretail
-  port: 9142
-embeddedCassandra.enabled: true
+  port: 9042
 endpoints:
   docs.path: /docs-actuator
   hypermedia.enabled: true

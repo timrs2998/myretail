@@ -1,0 +1,13 @@
+**/*
+
+!.git/
+!*gradle*
+!myretail-*/
+!gradle/
+
+.settings
+build/
+out/
+target/
+.classpath
+.project

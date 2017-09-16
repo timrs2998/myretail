@@ -2,16 +2,12 @@ package com.myretail.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.transform.CompileStatic
-import org.cassandraunit.spring.CassandraUnitDependencyInjectionTestExecutionListener
-import org.cassandraunit.spring.EmbeddedCassandra
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.TestExecutionListeners
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
 import spock.lang.Specification
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SNAKE_CASE
@@ -23,9 +19,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         MockConfiguration
 ])
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@TestExecutionListeners(listeners = [
-        DependencyInjectionTestExecutionListener
-])
 abstract class MyRetailApplicationIntSpec extends Specification {
 
     @Value('${local.server.port}')

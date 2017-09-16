@@ -8,7 +8,7 @@ import com.myretail.service.redsky.Item
 import com.myretail.service.redsky.RedskyProduct
 import com.myretail.service.redsky.ProductDescription
 import com.myretail.service.redsky.RedskyResponse
-import com.myretail.service.config.RedskyConfig
+import com.myretail.service.config.RedSkyConfig
 import groovy.transform.CompileStatic
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 
 @CompileStatic
 @Configuration
-class MockConfiguration extends RedskyConfig {
+class MockConfiguration extends RedSkyConfig {
 
     static RedskyProduct existing = new RedskyProduct(
             new AvailableToPromiseNetwork(13860428L),
