@@ -61,7 +61,7 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
                 responseFields(
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('name').description('product name from redsky'),
-                        fieldWithPath("_links").description('link to other resources')
+                        fieldWithPath('_links').description('link to other resources')
                 )))
     }
 
