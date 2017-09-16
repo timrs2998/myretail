@@ -6,7 +6,7 @@
 myretail is an implementation of a products API that aggregates price 
 details by ID. It is a [Spring Boot](https://projects.spring.io/spring-boot/) 
 microservice backed by a [Cassandra](https://cassandra.apache.org/) database
-and the redsky API.
+and the RedSky API.
 
 ## Build and Run
 
@@ -85,7 +85,7 @@ kubectl port forward ..
 ## Usage
 
 Once running, the Cassandra database will not have any price information. Any
-GET request would return either a 404 (if missing in redsky) or a response 
+GET request would return either a 404 (if missing in RedSky) or a response
 without a price.
 
 You can perform PUT requests to add or update price information for any
@@ -104,7 +104,7 @@ ie: `PUT http://localhost:8080/products/13860428` with body:
 }
 ```
 
-or you can perform a GET request to aggregate information from Cassandra and redsky:
+or you can perform a GET request to aggregate information from Cassandra and RedSky:
 
  * [GET http://localhost:8080/products/16696652](http://localhost:8080/products/16696652)
  * [GET http://localhost:8080/products/13860428](http://localhost:8080/products/13860428)

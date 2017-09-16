@@ -1,13 +1,13 @@
 package com.myretail.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.myretail.service.redsky.RedskyApi
+import com.myretail.service.redsky.RedSkyApi
 import com.myretail.service.redsky.AvailableToPromiseNetwork
 import com.myretail.service.redsky.DeepRedLabels
 import com.myretail.service.redsky.Item
-import com.myretail.service.redsky.RedskyProduct
+import com.myretail.service.redsky.RedSkyProduct
 import com.myretail.service.redsky.ProductDescription
-import com.myretail.service.redsky.RedskyResponse
+import com.myretail.service.redsky.RedSkyResponse
 import com.myretail.service.config.RedSkyConfig
 import groovy.transform.CompileStatic
 import org.springframework.context.annotation.Bean
@@ -25,12 +25,12 @@ import java.util.concurrent.TimeUnit
 @Configuration
 class MockConfiguration extends RedSkyConfig {
 
-    static RedskyProduct existing = new RedskyProduct(
+    static RedSkyProduct existing = new RedSkyProduct(
             new AvailableToPromiseNetwork(13860428L),
             DeepRedLabels.INSTANCE,
             new Item(new ProductDescription('The Big Lebowski (Blu-ray) (Widescreen)'))
     )
-    static RedskyProduct notFound = new RedskyProduct(
+    static RedSkyProduct notFound = new RedSkyProduct(
             null,
             null,
             new Item(null)
@@ -39,13 +39,13 @@ class MockConfiguration extends RedSkyConfig {
     @Bean
     @Inject
     @Override
-    RedskyApi redskyApi(ObjectMapper objectMapper) {
-        Retrofit retrofit = redskyRetrofit(objectMapper)
-        BehaviorDelegate<RedskyApi> delegate = new MockRetrofit.Builder(retrofit)
+    RedSkyApi redSkyApi(ObjectMapper objectMapper) {
+        Retrofit retrofit = redSkyRetrofit(objectMapper)
+        BehaviorDelegate<RedSkyApi> delegate = new MockRetrofit.Builder(retrofit)
                 .networkBehavior(perfectNetwork())
                 .build()
-                .create(RedskyApi)
-        return new MockRedskyApi(delegate)
+                .create(RedSkyApi)
+        return new MockRedSkyApi(delegate)
     }
 
     private NetworkBehavior perfectNetwork() {
@@ -57,21 +57,21 @@ class MockConfiguration extends RedSkyConfig {
         return networkBehavior
     }
 
-    private static class MockRedskyApi implements RedskyApi {
-        final BehaviorDelegate<RedskyApi> delegate
-        final Map<Long, RedskyProduct> products = [
+    private static class MockRedSkyApi implements RedSkyApi {
+        final BehaviorDelegate<RedSkyApi> delegate
+        final Map<Long, RedSkyProduct> products = [
                 (existing.availableToPromiseNetwork.productId): existing
         ]
 
-        MockRedskyApi(BehaviorDelegate<RedskyApi> delegate) {
+        MockRedSkyApi(BehaviorDelegate<RedSkyApi> delegate) {
             this.delegate = delegate
         }
 
         @Override
-        CompletableFuture<RedskyResponse> get(long id, List<String> exclude) {
-            RedskyProduct redskyProduct = products.get(id)
+        CompletableFuture<RedSkyResponse> get(long id, List<String> exclude) {
+            RedSkyProduct redSkyProduct = products.get(id)
             return delegate
-                    .returningResponse(new RedskyResponse(redskyProduct ?: notFound))
+                    .returningResponse(new RedSkyResponse(redSkyProduct ?: notFound))
                     .get(id, exclude)
         }
 

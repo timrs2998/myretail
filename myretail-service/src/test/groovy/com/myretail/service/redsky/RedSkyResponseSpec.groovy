@@ -7,7 +7,7 @@ import spock.lang.Specification
 
 import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SNAKE_CASE
 
-class RedskyResponseSpec extends Specification {
+class RedSkyResponseSpec extends Specification {
 
     ObjectMapper objectMapper = new ObjectMapper()
             .setPropertyNamingStrategy(SNAKE_CASE)
@@ -15,14 +15,14 @@ class RedskyResponseSpec extends Specification {
             .registerModule(new KotlinModule())
 
     void 'can parse Big Lebowski reponse'() {
-        given: 'Big Lebowski json response from redsky'
+        given: 'Big Lebowski json response from RedSky'
         String json = getClass().getResource('/redsky/bigLebowskiResponse.json').text
 
         when: 'response converted to object'
-        RedskyResponse deserialized = objectMapper.readValue(json, RedskyResponse)
+        RedSkyResponse deserialized = objectMapper.readValue(json, RedSkyResponse)
 
         then: 'object has id and name'
-        deserialized == new RedskyResponse(new RedskyProduct(
+        deserialized == new RedSkyResponse(new RedSkyProduct(
                 new AvailableToPromiseNetwork(13860428),
                 DeepRedLabels.INSTANCE,
                 new Item(new ProductDescription('The Big Lebowski (Blu-ray)'))
@@ -30,14 +30,14 @@ class RedskyResponseSpec extends Specification {
     }
 
     void 'can parse Beats response'() {
-        given: 'Big Lebowski json response from redsky'
+        given: 'Big Lebowski json response from RedSky'
         String json = getClass().getResource('/redsky/beatsResponse.json').text
 
         when: 'response converted to object'
-        RedskyResponse deserialized = objectMapper.readValue(json, RedskyResponse)
+        RedSkyResponse deserialized = objectMapper.readValue(json, RedSkyResponse)
 
         then: 'object has id and name'
-        deserialized == new RedskyResponse(new RedskyProduct(
+        deserialized == new RedSkyResponse(new RedSkyProduct(
                 new AvailableToPromiseNetwork(16696652),
                 DeepRedLabels.INSTANCE,
                 new Item(new ProductDescription('Beats Solo 2 Wireless - Black (MHNG2AM/A)'))

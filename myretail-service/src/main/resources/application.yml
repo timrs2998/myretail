@@ -8,5 +8,5 @@ endpoints:
 management:
   info.git.mode: full
   security.enabled: false
-redsky:
+redSky:
   uri: http://redsky.target.com/

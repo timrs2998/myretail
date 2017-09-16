@@ -60,7 +60,7 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
         ),
                 responseFields(
                         fieldWithPath('id').description('product id'),
-                        fieldWithPath('name').description('product name from redsky'),
+                        fieldWithPath('name').description('product name from RedSky'),
                         fieldWithPath('_links').description('link to other resources')
                 )))
     }
@@ -81,7 +81,7 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('current_price.value').description('current price of product from Cassandra'),
                         fieldWithPath('current_price.currency_code').description('current currency code of product from Cassandra'),
-                        fieldWithPath('name').description('product name from redsky'),
+                        fieldWithPath('name').description('product name from RedSky'),
                         fieldWithPath("_links").description('link to other resources')
                 )))
     }
@@ -105,7 +105,7 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('current_price.value').description('current price of product from Cassandra'),
                         fieldWithPath('current_price.currency_code').description('current currency code of product from Cassandra'),
-                        fieldWithPath('name').description('product name from redsky'),
+                        fieldWithPath('name').description('product name from RedSky'),
                         fieldWithPath("_links").description('link to other resources')
                 )))
     }
@@ -127,7 +127,7 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
         ),
                 responseFields(
                         fieldWithPath('id').description('product id'),
-                        fieldWithPath('name').description('product name from redsky'),
+                        fieldWithPath('name').description('product name from RedSky'),
                         fieldWithPath("_links").description('link to other resources')
                 )))
     }

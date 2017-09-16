@@ -12,7 +12,7 @@ Tim Schoenheider;
 
 myretail is an implementation of a products API that aggregates price details
 by ID. It is a Spring Boot microservice backed by a Cassandra database and the
-redsky API.
+RedSky API.
 
 [[overview]]
 = Overview

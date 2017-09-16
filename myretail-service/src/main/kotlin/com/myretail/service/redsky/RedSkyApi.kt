@@ -5,9 +5,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.CompletableFuture
 
-interface RedskyApi {
+interface RedSkyApi {
 
     @GET("/v2/pdp/tcin/{id}")
-    fun get(@Path("id") id: Long, @Query("exclude") exclude: List<String>): CompletableFuture<RedskyResponse>
+    fun get(@Path("id") id: Long, @Query("exclude") exclude: List<String>): CompletableFuture<RedSkyResponse>
 
 }

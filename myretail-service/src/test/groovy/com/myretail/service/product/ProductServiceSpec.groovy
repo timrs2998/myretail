@@ -3,13 +3,13 @@ package com.myretail.service.product
 import com.myretail.api.CurrencyCode
 import com.myretail.api.Price
 import com.myretail.api.Product
-import com.myretail.service.redsky.RedskyApi
+import com.myretail.service.redsky.RedSkyApi
 import com.myretail.service.redsky.AvailableToPromiseNetwork
 import com.myretail.service.redsky.DeepRedLabels
 import com.myretail.service.redsky.Item
-import com.myretail.service.redsky.RedskyProduct
+import com.myretail.service.redsky.RedSkyProduct
 import com.myretail.service.redsky.ProductDescription
-import com.myretail.service.redsky.RedskyResponse
+import com.myretail.service.redsky.RedSkyResponse
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.springframework.data.rest.webmvc.ResourceNotFoundException
@@ -24,8 +24,8 @@ class ProductServiceSpec extends Specification {
 
     ProductService service
     ProductPORepository repository = Mock(ProductPORepository)
-    RedskyApi api = Mock(RedskyApi)
-    CompletableFuture<RedskyResponse> future = Mock(CompletableFuture)
+    RedSkyApi api = Mock(RedSkyApi)
+    CompletableFuture<RedSkyResponse> future = Mock(CompletableFuture)
 
     void setup() {
         service = new ProductService(repository, api)
@@ -38,12 +38,12 @@ class ProductServiceSpec extends Specification {
     void 'should get product - already in database'() {
         given:
         ProductPO productPO = new ProductPO(1, 23.3, CurrencyCode.USD)
-        RedskyProduct redskyProduct = new RedskyProduct(
+        RedSkyProduct redSkyProduct = new RedSkyProduct(
                 new AvailableToPromiseNetwork(1),
                 new DeepRedLabels(),
                 new Item(new ProductDescription('hello'))
         )
-        RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
+        RedSkyResponse redSkyResponse = new RedSkyResponse(redSkyProduct)
 
         when:
         Product response = service.get(1)
@@ -51,7 +51,7 @@ class ProductServiceSpec extends Specification {
         then:
         1 * repository.findOne(1) >> productPO
         1 * api.get(1, _ as List) >> future
-        1 * future.get() >> redskyResponse
+        1 * future.get() >> redSkyResponse
         0 * _
         response == new Product(
                 1L,
@@ -62,12 +62,12 @@ class ProductServiceSpec extends Specification {
 
     void 'should get product - not in database'() {
         given:
-        RedskyProduct redskyProduct = new RedskyProduct(
+        RedSkyProduct redSkyProduct = new RedSkyProduct(
                 new AvailableToPromiseNetwork(1),
                 new DeepRedLabels(),
                 new Item(new ProductDescription('hello'))
         )
-        RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
+        RedSkyResponse redSkyResponse = new RedSkyResponse(redSkyProduct)
 
         when:
         Product response = service.get(1)
@@ -75,7 +75,7 @@ class ProductServiceSpec extends Specification {
         then:
         1 * repository.findOne(1) >> null
         1 * api.get(1, _ as List) >> future
-        1 * future.get() >> redskyResponse
+        1 * future.get() >> redSkyResponse
         0 * _
         response == new Product(1L, 'hello', null)
     }
@@ -114,12 +114,12 @@ class ProductServiceSpec extends Specification {
     void 'should update price'() {
         given:
         Product request = new Product(1L, 'hello', new Price(23.3, CurrencyCode.USD))
-        RedskyProduct redskyProduct = new RedskyProduct(
+        RedSkyProduct redSkyProduct = new RedSkyProduct(
                 new AvailableToPromiseNetwork(1),
                 new DeepRedLabels(),
                 new Item(new ProductDescription('hello'))
         )
-        RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
+        RedSkyResponse redSkyResponse = new RedSkyResponse(redSkyProduct)
         ProductPO saved = new ProductPO(1L, 23.3, CurrencyCode.USD)
 
         when:
@@ -127,7 +127,7 @@ class ProductServiceSpec extends Specification {
 
         then:
         1 * api.get(1, _ as List) >> future
-        1 * future.get() >> redskyResponse
+        1 * future.get() >> redSkyResponse
         1 * repository.save(saved) >> saved
         0 * _
         response == new Product(
@@ -156,19 +156,19 @@ class ProductServiceSpec extends Specification {
     void 'should remove price'() {
         given:
         Product request = new Product(1L, 'hello', null)
-        RedskyProduct redskyProduct = new RedskyProduct(
+        RedSkyProduct redSkyProduct = new RedSkyProduct(
                 new AvailableToPromiseNetwork(1),
                 new DeepRedLabels(),
                 new Item(new ProductDescription('hello'))
         )
-        RedskyResponse redskyResponse = new RedskyResponse(redskyProduct)
+        RedSkyResponse redSkyResponse = new RedSkyResponse(redSkyProduct)
 
         when:
         Product response = service.update(request)
 
         then:
         1 * api.get(1, _ as List) >> future
-        1 * future.get() >> redskyResponse
+        1 * future.get() >> redSkyResponse
         1 * repository.delete(request.id)
         0 * _
         response == new Product(

@@ -2,9 +2,9 @@ package com.myretail.service.product
 
 import com.myretail.api.Price
 import com.myretail.api.Product
-import com.myretail.service.redsky.RedskyApi
-import com.myretail.service.redsky.RedskyProduct
-import com.myretail.service.redsky.RedskyResponse
+import com.myretail.service.redsky.RedSkyApi
+import com.myretail.service.redsky.RedSkyProduct
+import com.myretail.service.redsky.RedSkyResponse
 import org.springframework.data.rest.webmvc.ResourceNotFoundException
 import org.springframework.stereotype.Component
 import retrofit2.HttpException
@@ -13,34 +13,34 @@ import javax.inject.Inject
 
 @Component
 class ProductService @Inject constructor(val repository: ProductPORepository,
-                                         val api: RedskyApi) {
+                                         val api: RedSkyApi) {
 
     val excludes = listOf("taxonomy", "price", "promotion", "bulk_ship",
             "rating_and_review_reviews", "rating_and_review_statistics",
             "question_answer_statistics")
 
     fun get(id: Long): Product {
-        val future: Future<RedskyResponse> = api.get(id, excludes)
+        val future: Future<RedSkyResponse> = api.get(id, excludes)
         val productPO: ProductPO? = repository.findOne(id)
-        val redskyProduct: RedskyProduct = getProduct(future)
+        val redSkyProduct: RedSkyProduct = getProduct(future)
         return if (productPO == null) {
-            buildProduct(redskyProduct)
+            buildProduct(redSkyProduct)
         } else {
-            buildProduct(productPO, redskyProduct)
+            buildProduct(productPO, redSkyProduct)
         }
     }
 
     fun update(updated: Product): Product {
-        val redskyProduct: RedskyProduct? = getProduct(api.get(updated.id, excludes))
+        val redSkyProduct: RedSkyProduct? = getProduct(api.get(updated.id, excludes))
         if (updated.currentPrice == null) {
             repository.delete(updated.id)
-            return buildProduct(redskyProduct!!)
+            return buildProduct(redSkyProduct!!)
         }
         val productPO = repository.save(buildProductPO(updated))
-        return buildProduct(productPO, redskyProduct!!)
+        return buildProduct(productPO, redSkyProduct!!)
     }
 
-    private fun getProduct(future: Future<RedskyResponse>): RedskyProduct {
+    private fun getProduct(future: Future<RedSkyResponse>): RedSkyProduct {
         try {
             return future.get().product
         } catch (ex: java.util.concurrent.ExecutionException) {
@@ -60,18 +60,18 @@ class ProductService @Inject constructor(val repository: ProductPORepository,
         )
     }
 
-    private fun buildProduct(redskyProduct: RedskyProduct, price: Price? = null): Product {
+    private fun buildProduct(redSkyProduct: RedSkyProduct, price: Price? = null): Product {
         return Product(
-                id = redskyProduct.availableToPromiseNetwork!!.productId,
-                name = redskyProduct.item.productDescription!!.title,
+                id = redSkyProduct.availableToPromiseNetwork!!.productId,
+                name = redSkyProduct.item.productDescription!!.title,
                 currentPrice = price
         )
     }
 
-    private fun buildProduct(productPO: ProductPO, redskyProduct: RedskyProduct): Product {
+    private fun buildProduct(productPO: ProductPO, redSkyProduct: RedSkyProduct): Product {
         return Product(
                 id = productPO.id,
-                name = redskyProduct.item.productDescription!!.title,
+                name = redSkyProduct.item.productDescription!!.title,
                 currentPrice = Price(
                         value = productPO.currentPriceValue,
                         currencyCode = productPO.currentPriceCurrencyCode
