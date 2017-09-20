@@ -16,7 +16,7 @@ apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:1.2.1.RELEASE'
+    asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:$springRestdocsVersion"
 
     compile project(':myretail-api')
     testCompile project(':myretail-client')

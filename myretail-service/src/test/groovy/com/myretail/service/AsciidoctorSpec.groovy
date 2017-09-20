@@ -55,14 +55,17 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
         ResultActions result = mockMvc.perform(get('/products/13860428').accept(MediaType.APPLICATION_JSON))
 
         then: 'response is successful'
-        result.andExpect(status().isOk())
-                .andDo(document('get-product-without-price', links(
-        ),
-                responseFields(
+        result
+                .andExpect(status().isOk())
+                .andDo(document(
+                    'get-product-without-price',
+                    links(),
+                    responseFields(
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('name').description('product name from RedSky'),
                         fieldWithPath('_links').description('link to other resources')
-                )))
+                    )
+                ))
     }
 
     void 'should get product with price in database'() {

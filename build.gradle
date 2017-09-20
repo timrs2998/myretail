@@ -12,6 +12,11 @@ buildscript {
     }
 }
 
+// Apply build-scan before all other plugins
+plugins {
+    id 'com.gradle.build-scan' version '1.9'
+}
+
 // Use "./gradlew dependencyUpdates -Drevision=release" to check dependencies
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'eclipse'
@@ -41,7 +46,7 @@ subprojects {
         // Kotlin
         compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
         compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-        compile("com.fasterxml.jackson.core:jackson-databind:$jacksonModuleKotlinVersion")
+        compile('com.fasterxml.jackson.core:jackson-databind')
         compile("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlinVersion")
 
         // Spock
@@ -65,4 +70,15 @@ tasks.withType(AbstractArchiveTask) {
 wrapper {
     distributionType = DistributionType.ALL
     gradleVersion = '4.1'
+}
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+    if (System.getenv('TRAVIS_PULL_REQUEST') == 'false') {
+        link 'VCS', "https://github.com/timrs2998/myretail/tree/${System.getProperty('vcs.branch')}"
+    }
+    if (System.getenv('CI')) {
+        publishAlways()
+    }
 }
