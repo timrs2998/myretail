@@ -15,8 +15,11 @@ cache:
   - "$HOME/.gradle/caches/jars-3"
   - "$HOME/.gradle/caches/3.4.1"
 script: "./gradlew build --info"
+before_install:
+- sudo apt-get update
+- sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 after_success:
-- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- docker login --username $DOCKER_USER --password $DOCKER_PASS
 - export REPO=timrs2998/myretail
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
   ; fi`
