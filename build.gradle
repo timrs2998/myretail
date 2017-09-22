@@ -29,7 +29,6 @@ allprojects {
 }
 
 subprojects {
-
     apply plugin: 'groovy'
     apply plugin: 'kotlin'
 
@@ -59,6 +58,10 @@ subprojects {
         testLogging {
             exceptionFormat = 'full'
         }
+    }
+
+    clean.doFirst {
+        delete "$projectDir/out/"
     }
 }
 

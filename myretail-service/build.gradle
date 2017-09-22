@@ -62,7 +62,3 @@ jar {
     }
 }
 
-// cassandra unit
-clean.doFirst {
-    delete "$projectDir/target/"
-}

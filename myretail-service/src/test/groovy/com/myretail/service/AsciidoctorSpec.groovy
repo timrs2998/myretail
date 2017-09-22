@@ -51,6 +51,9 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
     }
 
     void 'should get product without price'() {
+        given:
+        repository.deleteAll()
+
         when: 'we fetch product by id'
         ResultActions result = mockMvc.perform(get('/products/13860428').accept(MediaType.APPLICATION_JSON))
 
