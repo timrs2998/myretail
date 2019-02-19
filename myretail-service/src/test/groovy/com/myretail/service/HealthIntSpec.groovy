@@ -13,7 +13,7 @@ class HealthIntSpec extends MyRetailApplicationIntSpec {
         then: "we receive the actuator health endpoint's success response"
         response.statusCode == HttpStatus.OK
         response.body.status.textValue() == 'UP'
-        response.body.cassandra.status.textValue() == 'UP'
+        response.body.details.cassandra.status.textValue() == 'UP'
     }
 
 }

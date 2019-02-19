@@ -2,11 +2,15 @@ cassandra:
   contactPoints: localhost
   keyspaceName: myretail
   port: 9042
-endpoints:
-  docs.path: /docs-actuator
-  hypermedia.enabled: true
 management:
   info.git.mode: full
-  security.enabled: false
+  health.cassandra.enabled: true
+  endpoint:
+    health:
+      show-details: always
 redSky:
   uri: http://redsky.target.com/
+# TODO: refactor tests and disable
+spring:
+  main:
+    allow-bean-definition-overriding: true

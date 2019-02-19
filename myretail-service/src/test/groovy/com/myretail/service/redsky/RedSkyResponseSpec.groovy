@@ -22,11 +22,10 @@ class RedSkyResponseSpec extends Specification {
         RedSkyResponse deserialized = objectMapper.readValue(json, RedSkyResponse)
 
         then: 'object has id and name'
-        deserialized == new RedSkyResponse(new RedSkyProduct(
-                new AvailableToPromiseNetwork(13860428),
-                DeepRedLabels.INSTANCE,
-                new Item(new ProductDescription('The Big Lebowski (Blu-ray)'))
-        ))
+        deserialized
+        deserialized.product.availableToPromiseNetwork.productId == 13860428
+        deserialized.product.deepRedLabels instanceof DeepRedLabels
+        deserialized.product.item.productDescription.title == 'The Big Lebowski (Blu-ray)'
     }
 
     void 'can parse Beats response'() {
@@ -37,11 +36,10 @@ class RedSkyResponseSpec extends Specification {
         RedSkyResponse deserialized = objectMapper.readValue(json, RedSkyResponse)
 
         then: 'object has id and name'
-        deserialized == new RedSkyResponse(new RedSkyProduct(
-                new AvailableToPromiseNetwork(16696652),
-                DeepRedLabels.INSTANCE,
-                new Item(new ProductDescription('Beats Solo 2 Wireless - Black (MHNG2AM/A)'))
-        ))
+        deserialized
+        deserialized.product.availableToPromiseNetwork.productId == 16696652
+        deserialized.product.deepRedLabels instanceof DeepRedLabels
+        deserialized.product.item.productDescription.title == 'Beats Solo 2 Wireless - Black (MHNG2AM/A)'
     }
 
 }

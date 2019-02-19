@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.ResultActions
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.halLinks
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration
@@ -22,6 +24,7 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields
+import static org.springframework.restdocs.payload.PayloadDocumentation.subsectionWithPath
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 class AsciidoctorSpec extends MyRetailApplicationIntSpec {
@@ -61,14 +64,14 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
         result
                 .andExpect(status().isOk())
                 .andDo(document(
-                    'get-product-without-price',
-                    links(),
-                    responseFields(
+                'get-product-without-price',
+                links(halLinks(), linkWithRel("self").ignored()),
+                responseFields(
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('name').description('product name from RedSky'),
-                        fieldWithPath('_links').description('link to other resources')
-                    )
-                ))
+                        subsectionWithPath('_links').ignored()
+                )
+        ))
     }
 
     void 'should get product with price in database'() {
@@ -80,15 +83,17 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
         ResultActions result = mockMvc.perform(get('/products/13860428').accept(MediaType.APPLICATION_JSON))
 
         then: 'response is successful'
-        result.andExpect(status().isOk())
-                .andDo(document('get-product-with-price', links(
-        ),
+        result
+                .andExpect(status().isOk())
+                .andDo(document(
+                'get-product-with-price',
+                links(halLinks(), linkWithRel("self").ignored()),
                 responseFields(
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('current_price.value').description('current price of product from Cassandra'),
                         fieldWithPath('current_price.currency_code').description('current currency code of product from Cassandra'),
                         fieldWithPath('name').description('product name from RedSky'),
-                        fieldWithPath("_links").description('link to other resources')
+                        subsectionWithPath('_links').ignored()
                 )))
     }
 
@@ -104,15 +109,17 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
                 .contentType(MediaType.APPLICATION_JSON))
 
         then: 'the price is saved'
-        result.andExpect(status().isOk())
-                .andDo(document('update-product-price', links(
-        ),
+        result
+                .andExpect(status().isOk())
+                .andDo(document(
+                'update-product-price',
+                links(halLinks(), linkWithRel("self").ignored()),
                 responseFields(
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('current_price.value').description('current price of product from Cassandra'),
                         fieldWithPath('current_price.currency_code').description('current currency code of product from Cassandra'),
                         fieldWithPath('name').description('product name from RedSky'),
-                        fieldWithPath("_links").description('link to other resources')
+                        subsectionWithPath('_links').ignored()
                 )))
     }
 
@@ -128,13 +135,15 @@ class AsciidoctorSpec extends MyRetailApplicationIntSpec {
                 .contentType(MediaType.APPLICATION_JSON))
 
         then: 'the price is removed'
-        result.andExpect(status().isOk())
-                .andDo(document('remove-product-price', links(
-        ),
+        result
+                .andExpect(status().isOk())
+                .andDo(document(
+                'remove-product-price',
+                links(halLinks(), linkWithRel("self").ignored()),
                 responseFields(
                         fieldWithPath('id').description('product id'),
                         fieldWithPath('name').description('product name from RedSky'),
-                        fieldWithPath("_links").description('link to other resources')
+                        subsectionWithPath('_links').ignored()
                 )))
     }
 

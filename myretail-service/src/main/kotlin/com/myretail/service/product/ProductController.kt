@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.ResponseBody
 import javax.inject.Inject
 
 @RepositoryRestController
-@RequestMapping(value = "products")
+@RequestMapping(value = ["products"])
 class ProductController @Inject constructor(val service: ProductService) {
 
-    @RequestMapping(value = "{id}", method = arrayOf(RequestMethod.GET))
+    @RequestMapping(value = ["{id}"], method = arrayOf(RequestMethod.GET))
     @ResponseBody
     fun get(@PathVariable id: Long): ResponseEntity<Resource<Product>> {
         val entity = service.get(id)
         return responseWithLink(entity)
     }
 
-    @RequestMapping(value = "{id}", method = arrayOf(RequestMethod.PUT))
+    @RequestMapping(value = ["{id}"], method = arrayOf(RequestMethod.PUT))
     @ResponseBody
     fun update(@PathVariable id: Long, @RequestBody body: Product): ResponseEntity<Resource<Product>> {
         if (id != body.id) {

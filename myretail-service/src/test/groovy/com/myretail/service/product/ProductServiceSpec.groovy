@@ -49,7 +49,7 @@ class ProductServiceSpec extends Specification {
         Product response = service.get(1)
 
         then:
-        1 * repository.findOne(1) >> productPO
+        1 * repository.findById(1) >> Optional.of(productPO)
         1 * api.get(1, _ as List) >> future
         1 * future.get() >> redSkyResponse
         0 * _
@@ -73,36 +73,18 @@ class ProductServiceSpec extends Specification {
         Product response = service.get(1)
 
         then:
-        1 * repository.findOne(1) >> null
+        1 * repository.findById(1) >> Optional.empty()
         1 * api.get(1, _ as List) >> future
         1 * future.get() >> redSkyResponse
         0 * _
         response == new Product(1L, 'hello', null)
     }
 
-    void 'should get product throws 404 - already in database'() {
-        given:
-        ProductPO productPO = new ProductPO(1, 23.3, CurrencyCode.USD)
-
+    void 'should get product throws 404'() {
         when:
         service.get(1)
 
         then:
-        1 * repository.findOne(1) >> productPO
-        1 * api.get(1, _ as List) >> future
-        1 * future.get() >> {
-            throw buildExecutionException()
-        }
-        0 * _
-        thrown(ResourceNotFoundException)
-    }
-
-    void 'should get product throws 404 - not in database'() {
-        when:
-        service.get(1)
-
-        then:
-        1 * repository.findOne(1) >> null
         1 * api.get(1, _ as List) >> future
         1 * future.get() >> {
             throw buildExecutionException()
@@ -169,7 +151,7 @@ class ProductServiceSpec extends Specification {
         then:
         1 * api.get(1, _ as List) >> future
         1 * future.get() >> redSkyResponse
-        1 * repository.delete(request.id)
+        1 * repository.deleteById(request.id)
         0 * _
         response == new Product(
                 1L,

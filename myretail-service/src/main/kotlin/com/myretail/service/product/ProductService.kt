@@ -8,6 +8,7 @@ import com.myretail.service.redsky.RedSkyResponse
 import org.springframework.data.rest.webmvc.ResourceNotFoundException
 import org.springframework.stereotype.Component
 import retrofit2.HttpException
+import java.util.Optional
 import java.util.concurrent.Future
 import javax.inject.Inject
 
@@ -21,19 +22,19 @@ class ProductService @Inject constructor(val repository: ProductPORepository,
 
     fun get(id: Long): Product {
         val future: Future<RedSkyResponse> = api.get(id, excludes)
-        val productPO: ProductPO? = repository.findOne(id)
         val redSkyProduct: RedSkyProduct = getProduct(future)
-        return if (productPO == null) {
-            buildProduct(redSkyProduct)
+        val productPO: Optional<ProductPO> = repository.findById(id)
+        return if (productPO.isPresent) {
+            buildProduct(productPO.get(), redSkyProduct)
         } else {
-            buildProduct(productPO, redSkyProduct)
+            buildProduct(redSkyProduct)
         }
     }
 
     fun update(updated: Product): Product {
         val redSkyProduct: RedSkyProduct? = getProduct(api.get(updated.id, excludes))
         if (updated.currentPrice == null) {
-            repository.delete(updated.id)
+            repository.deleteById(updated.id)
             return buildProduct(redSkyProduct!!)
         }
         val productPO = repository.save(buildProductPO(updated))

@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.gorylenko.gradle-git-properties' version '1.4.17'
+    id 'com.gorylenko.gradle-git-properties' version '2.0.0'
 }
 
 apply plugin: 'kotlin-spring'
@@ -22,7 +22,6 @@ dependencies {
     testCompile project(':myretail-client')
 
     compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.boot:spring-boot-actuator-docs')
     compile('org.springframework.boot:spring-boot-starter-data-cassandra')
     compile('org.springframework.boot:spring-boot-starter-hateoas')
     compile('org.springframework.data:spring-data-rest-hal-browser')
@@ -30,7 +29,7 @@ dependencies {
     compile("com.squareup.retrofit2:retrofit:$retrofitVersion")
     compile("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
     compile("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
-
+    compile("io.dropwizard.metrics:metrics-core:$dropwizardMetricsCore")
     runtime('org.springframework.boot:spring-boot-devtools')
 
     testCompile("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")

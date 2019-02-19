@@ -1,14 +1,14 @@
 package com.myretail.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.myretail.service.redsky.RedSkyApi
+import com.myretail.service.config.RedSkyConfig
 import com.myretail.service.redsky.AvailableToPromiseNetwork
 import com.myretail.service.redsky.DeepRedLabels
 import com.myretail.service.redsky.Item
-import com.myretail.service.redsky.RedSkyProduct
 import com.myretail.service.redsky.ProductDescription
+import com.myretail.service.redsky.RedSkyApi
+import com.myretail.service.redsky.RedSkyProduct
 import com.myretail.service.redsky.RedSkyResponse
-import com.myretail.service.config.RedSkyConfig
 import groovy.transform.CompileStatic
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

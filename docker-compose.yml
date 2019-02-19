@@ -5,6 +5,7 @@ services:
     environment:
       CASSANDRA_CONTACTPOINTS: db
       CASSANDRA_PORT: '9042'
+    image: timrs2998/myretail
     links:
     - db
     ports:

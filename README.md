@@ -34,8 +34,8 @@ $ docker run -p 9042:9042 -t library/cassandra:3.11.0
 $ docker-compose up db
 
 # arch (from AUR)
-yaourt -S cassandra
-systemctl start cassandra
+$ yay -S cassandra
+$ systemctl start cassandra
 ```
 
 ### Run the app
@@ -72,14 +72,48 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+<!--
 ### Run with Minikube
 
 Start service:
 
 ```bash
-minikube start
-kubectl apply --filename kubernetes/minikube --recursive
-kubectl port forward ..
+# Start minikube and deploy services
+$ minikube start
+$ kubectl apply --filename kubernetes/
+
+# Wait for deployment to finish
+$ watch -n 0.5 kubectl get pods
+$ kubectl port-forward myretail 8080:8080
+
+# Verify service is running on forwarded port
+$ curl 127.0.0.1:8080/health
+
+# Cleanup
+$ minikube delete
+```
+-->
+
+### Run with Docker Swarm
+
+Similar to Kubernetes, the myretail app can be deployed on
+[Docker Swarm](https://docs.docker.com/engine/swarm/):
+
+```bash
+# Start swarm mode and deploy stack
+$ docker swarm init --advertise-adr 127.0.0.1
+$ docker stack deploy --compose-file docker-compose.yml myretail-swarm-demo
+
+# Wait for deployment to finish
+$ watch -n 0.5 docker ps
+$ watch -n 0.5 docker-compose ps
+
+# Verify service is running
+$ curl 127.0.0.1:8080/health
+
+# Cleanup
+$ docker stack rm myretail-swarm-demo
+$ docker swarm leave --force
 ```
 
 ## Usage
@@ -91,17 +125,20 @@ without a price.
 You can perform PUT requests to add or update price information for any
 existing product:
 
-ie: `PUT http://localhost:8080/products/13860428` with body:
+ie: `PUT http://127.0.0.1:8080/products/13860428` with body:
 
-```json
-{
-  "id": 13860428,
-  "name": "The Big Lebowski (Blu-ray)",
-  "current_price": {
-    "value": 123.42,
-    "currency_code": "USD"
-  }
-}
+```bash
+$ curl 'http://127.0.0.1:8080/products/13860428' \
+  -X PUT \
+  -H 'Content-Type: application/json' \
+  -d '{'\
+'  "id": 13860428,'\
+'  "name": "The Big Lebowski (Blu-ray)",'\
+'  "current_price": {'\
+'    "value": 123.42,'\
+'    "currency_code": "USD"'\
+'  }'\
+'}'
 ```
 
 or you can perform a GET request to aggregate information from Cassandra and RedSky:

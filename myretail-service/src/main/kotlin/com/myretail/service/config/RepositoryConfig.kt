@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import org.springframework.context.annotation.Configuration
-import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer
 
 @Configuration
-class RepositoryConfig : RepositoryRestConfigurerAdapter() {
+class RepositoryConfig : RepositoryRestConfigurer {
 
     override fun configureJacksonObjectMapper(objectMapper: ObjectMapper) {
         objectMapper.propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
