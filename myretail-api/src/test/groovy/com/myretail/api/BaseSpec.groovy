@@ -12,17 +12,17 @@ import static com.fasterxml.jackson.databind.PropertyNamingStrategy.SNAKE_CASE
 @CompileStatic
 abstract class BaseSpec extends Specification {
 
-    @Shared
-    ObjectMapper objectMapper = new ObjectMapper()
-            .setPropertyNamingStrategy(SNAKE_CASE)
-            .registerModule(new KotlinModule())
+  @Shared
+  ObjectMapper objectMapper = new ObjectMapper()
+    .setPropertyNamingStrategy(SNAKE_CASE)
+    .registerModule(new KotlinModule())
 
-    String jsonFromFile(String filename) {
-        return objectMapper.readValue(getClass().getResource("/${filename}.json").text, JsonNode).toString()
-    }
+  String jsonFromFile(String filename) {
+    return objectMapper.readValue(getClass().getResource("/${filename}.json").text, JsonNode).toString()
+  }
 
-    def <T> T fromJson(String filename, Class<T> clazz) {
-        return objectMapper.readValue(jsonFromFile(filename), clazz)
-    }
+  def <T> T fromJson(String filename, Class<T> clazz) {
+    return objectMapper.readValue(jsonFromFile(filename), clazz)
+  }
 
 }

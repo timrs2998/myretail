@@ -1,3 +1,5 @@
 include 'myretail-api',
-        'myretail-client',
-        'myretail-service'
+  'myretail-client',
+  'myretail-service',
+  'redsky-api',
+  'redsky-client'

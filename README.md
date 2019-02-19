@@ -87,7 +87,7 @@ $ watch -n 0.5 kubectl get pods
 $ kubectl port-forward myretail 8080:8080
 
 # Verify service is running on forwarded port
-$ curl 127.0.0.1:8080/health
+$ curl 127.0.0.1:8080/actuator/health
 
 # Cleanup
 $ minikube delete
@@ -109,7 +109,7 @@ $ watch -n 0.5 docker ps
 $ watch -n 0.5 docker-compose ps
 
 # Verify service is running
-$ curl 127.0.0.1:8080/health
+$ curl 127.0.0.1:8080/actuator/health
 
 # Cleanup
 $ docker stack rm myretail-swarm-demo
@@ -167,10 +167,8 @@ up-to-date.
 Some endpoints of interest include:
 
  * [/](https://www.myretail.pw/) (HAL API Browser)
- * [/docs](https://www.myretail.pw/docs) (API documenation)
- * [/docs-actuator](https://www.myretail.pw/docs-actuator) (Actuator and HATEOS documentation)
-  * [/health](https://www.myretail.pw/health)
-  * [/info](https://www.myretail.pw/info)
+  * [/actuator/health](https://www.myretail.pw/actuator/health)
+  * [/actuator/info](https://www.myretail.pw/actuator/info)
 
 ## Testing
 

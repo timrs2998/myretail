@@ -10,15 +10,13 @@ import org.springframework.context.annotation.Bean
 
 @SpringBootApplication
 class MyRetailApplication {
-
-    @Bean
-    fun objectMapper(): ObjectMapper = ObjectMapper()
-            .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
-            .registerModule(KotlinModule())
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-
+  @Bean
+  fun objectMapper(): ObjectMapper = ObjectMapper()
+    .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
+    .registerModule(KotlinModule())
+    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 }
 
 fun main(args: Array<String>) {
-    SpringApplication.run(MyRetailApplication::class.java, *args)
+  SpringApplication.run(MyRetailApplication::class.java, *args)
 }

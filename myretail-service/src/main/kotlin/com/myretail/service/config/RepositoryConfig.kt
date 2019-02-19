@@ -8,10 +8,8 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer
 
 @Configuration
 class RepositoryConfig : RepositoryRestConfigurer {
-
-    override fun configureJacksonObjectMapper(objectMapper: ObjectMapper) {
-        objectMapper.propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
-    }
-
+  override fun configureJacksonObjectMapper(objectMapper: ObjectMapper) {
+    objectMapper.propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
+    objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
+  }
 }

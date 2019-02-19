@@ -8,11 +8,9 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ProductApi {
+  @GET("/products/{id}")
+  fun get(@Path("id") id: Long): Call<Product>
 
-    @GET("/products/{id}")
-    fun get(@Path("id") id: Long): Call<Product>
-
-    @PUT("/products/{id}")
-    fun update(@Path("id") id: Long, @Body product: Product): Call<Product>
-
+  @PUT("/products/{id}")
+  fun update(@Path("id") id: Long, @Body product: Product): Call<Product>
 }

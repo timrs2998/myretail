@@ -1,14 +1,14 @@
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath("org.asciidoctor:asciidoctor-gradle-plugin:$asciiDoctor")
-    }
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath("org.asciidoctor:asciidoctor-gradle-plugin:$asciiDoctor")
+  }
 }
 
 plugins {
-    id 'com.gorylenko.gradle-git-properties' version '2.0.0'
+  id 'com.gorylenko.gradle-git-properties' version '2.0.0'
 }
 
 apply plugin: 'kotlin-spring'
@@ -16,48 +16,50 @@ apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:$springRestdocsVersion"
+  asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:$springRestdocsVersion"
 
-    compile project(':myretail-api')
-    testCompile project(':myretail-client')
+  compile project(':myretail-api')
+  compile project(':redsky-api')
+  compile project(':redsky-client')
+  testCompile project(':myretail-client')
 
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.boot:spring-boot-starter-data-cassandra')
-    compile('org.springframework.boot:spring-boot-starter-hateoas')
-    compile('org.springframework.data:spring-data-rest-hal-browser')
-    compile("javax.inject:javax.inject:$javaxInjectVersion")
-    compile("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    compile("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
-    compile("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
-    compile("io.dropwizard.metrics:metrics-core:$dropwizardMetricsCore")
-    runtime('org.springframework.boot:spring-boot-devtools')
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('org.springframework.boot:spring-boot-starter-data-cassandra')
+  compile('org.springframework.boot:spring-boot-starter-hateoas')
+  compile('org.springframework.data:spring-data-rest-hal-browser')
+  compile("javax.inject:javax.inject:$javaxInjectVersion")
+  compile("com.squareup.retrofit2:retrofit:$retrofitVersion")
+  compile("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
+  compile("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
+  compile("io.dropwizard.metrics:metrics-core:$dropwizardMetricsCore")
+  runtime('org.springframework.boot:spring-boot-devtools')
 
-    testCompile("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
-    testCompile("org.spockframework:spock-spring:$spockVersion")
+  testCompile("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+  testCompile("org.spockframework:spock-spring:$spockVersion")
 }
 
 springBoot  {
-    buildInfo()
+  buildInfo()
 }
 
 // asciidoctor
 ext {
-    snippetsDir = file('build/generated-snippets')
+  snippetsDir = file('build/generated-snippets')
 }
 test {
-    outputs.dir snippetsDir
+  outputs.dir snippetsDir
 }
 asciidoctor {
-    attributes 'snippets': snippetsDir
-    inputs.dir snippetsDir
-    dependsOn test
+  attributes 'snippets': snippetsDir
+  inputs.dir snippetsDir
+  dependsOn test
 }
 jar {
-    dependsOn asciidoctor
-    from ("$asciidoctor.outputDir/html5") {
-        into 'static/docs'
-    }
+  dependsOn asciidoctor
+  from ("$asciidoctor.outputDir/html5") {
+    into 'static/docs'
+  }
 }
 
