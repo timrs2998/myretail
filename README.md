@@ -69,7 +69,9 @@ Start service:
 
 ```bash
 $ docker-compose build
-$ docker-compose up
+$ docker-compose up db
+# wait for Cassandra to start listening
+$ docker-compose up app
 ```
 
 <!--

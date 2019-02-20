@@ -1,5 +1,11 @@
-version: '3.3'
+version: '3.7'
 services:
+
+  db:
+    image: library/cassandra:3.11.4
+    ports:
+    - '9042:9042'
+
   app:
     build: .
     environment:
@@ -7,11 +13,7 @@ services:
       CASSANDRA_PORT: '9042'
     image: timrs2998/myretail
     links:
-    - db
+      - db
     ports:
-    - '8080:8080'
+      - '8080:8080'
     restart: unless-stopped
-  db:
-    image: library/cassandra:3.11.0
-    ports:
-    - '9042:9042'

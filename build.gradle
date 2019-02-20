@@ -65,15 +65,15 @@ subprojects {
     ktlint 'com.github.shyiko:ktlint:0.30.0'
 
     // Kotlin
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-    compile("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-    compile("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
-    compile("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
 
     // Spock
-    testCompile("org.codehaus.groovy:groovy-all:$groovyVersion")
-    testCompile("org.spockframework:spock-core:$spockVersion")
-    testCompile("cglib:cglib:$cglibVersion")
+    testImplementation("org.codehaus.groovy:groovy-all:$groovyVersion")
+    testImplementation("org.spockframework:spock-core:$spockVersion")
+    testImplementation("cglib:cglib:$cglibVersion")
   }
 
   test {

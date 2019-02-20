@@ -12,7 +12,7 @@ import javax.inject.Inject
 @Configuration
 class RedSkyConfig {
   @Value("\${redSky.uri}")
-  var redSkyUri: String? = null
+  private lateinit var redSkyUri: String
 
   @Bean
   @Inject
@@ -21,7 +21,7 @@ class RedSkyConfig {
   }
 
   protected fun redSkyRetrofit(objectMapper: ObjectMapper): Retrofit = Retrofit.Builder()
-    .baseUrl(redSkyUri!!)
+    .baseUrl(redSkyUri)
     .addConverterFactory(JacksonConverterFactory.create(objectMapper))
     .build()
 }

@@ -3,6 +3,7 @@
 !.git/
 !*gradle*
 !myretail-*/
+!redsky-*/
 !gradle/
 
 .settings

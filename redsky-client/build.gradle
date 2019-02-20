@@ -1,6 +1,6 @@
 dependencies {
-  compile project(':redsky-api')
+  implementation project(':redsky-api')
 
-  compile("com.squareup.retrofit2:retrofit:$retrofitVersion")
-  compile("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
+  api("com.squareup.retrofit2:retrofit:$retrofitVersion")
+  api("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
 }

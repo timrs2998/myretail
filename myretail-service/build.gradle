@@ -18,26 +18,26 @@ apply plugin: 'org.springframework.boot'
 dependencies {
   asciidoctor "org.springframework.restdocs:spring-restdocs-asciidoctor:$springRestdocsVersion"
 
-  compile project(':myretail-api')
-  compile project(':redsky-api')
-  compile project(':redsky-client')
-  testCompile project(':myretail-client')
+  implementation project(':myretail-api')
+  implementation project(':redsky-api')
+  implementation project(':redsky-client')
+  testImplementation project(':myretail-client')
 
-  compile('org.springframework.boot:spring-boot-starter-actuator')
-  compile('org.springframework.boot:spring-boot-starter-data-cassandra')
-  compile('org.springframework.boot:spring-boot-starter-hateoas')
-  compile('org.springframework.data:spring-data-rest-hal-browser')
-  compile("javax.inject:javax.inject:$javaxInjectVersion")
-  compile("com.squareup.retrofit2:retrofit:$retrofitVersion")
-  compile("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
-  compile("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
-  compile("io.dropwizard.metrics:metrics-core:$dropwizardMetricsCore")
+  implementation('org.springframework.boot:spring-boot-starter-actuator')
+  implementation('org.springframework.boot:spring-boot-starter-data-cassandra')
+  implementation('org.springframework.boot:spring-boot-starter-hateoas')
+  implementation('org.springframework.data:spring-data-rest-hal-browser')
+  implementation("javax.inject:javax.inject:$javaxInjectVersion")
+  implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+  implementation("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
+  implementation("com.squareup.retrofit2:adapter-java8:$retrofitVersion")
+  implementation("io.dropwizard.metrics:metrics-core:$dropwizardMetricsCore")
   runtime('org.springframework.boot:spring-boot-devtools')
 
-  testCompile("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
-  testCompile('org.springframework.boot:spring-boot-starter-test')
-  testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
-  testCompile("org.spockframework:spock-spring:$spockVersion")
+  testImplementation("com.squareup.retrofit2:retrofit-mock:$retrofitVersion")
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
+  testImplementation("org.spockframework:spock-spring:$spockVersion")
 }
 
 springBoot  {
