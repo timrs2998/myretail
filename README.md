@@ -80,15 +80,23 @@ $ docker-compose up app
 Start service:
 
 ```bash
-# Start minikube and deploy services
-$ minikube start
-$ kubectl apply --filename kubernetes/
+# Start minikube
+$ minikube start --cpus 4 --memory 8192
+
+# Build image in kubernetes (optional)
+$ eval $(minikube docker-env)
+$ docker build -t timrs2998/myretail .
+
+# Deploy
+$ kubectl apply --filename kubernetes/cassandra.yml
+# wait for Cassandra to start listening
+$ kubectl apply --filename kubernetes/myretail.yml
 
 # Wait for deployment to finish
 $ watch -n 0.5 kubectl get pods
-$ kubectl port-forward myretail 8080:8080
 
-# Verify service is running on forwarded port
+# Verify service is running
+$ minikube service myretail --url
 $ curl 127.0.0.1:8080/actuator/health
 
 # Cleanup

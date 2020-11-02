@@ -9,13 +9,15 @@ spec:
     app: cassandra
   clusterIP: None
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cassandra
 spec:
-  strategy:
-    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cassandra
   template:
     metadata:
       labels:

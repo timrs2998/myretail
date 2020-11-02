@@ -4,17 +4,20 @@ metadata:
   name: myretail
 spec:
   ports:
-    - port: 9042
+    - port: 8080
   selector:
     app: myretail
   clusterIP: None
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myretail
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: myretail
   template:
     metadata:
       labels:
